@@ -1,0 +1,3 @@
+[submodule "GreyboxEngine/3rdParty/spdlog"]
+	path = GreyboxEngine/3rdParty/spdlog
+	url = https://github.com/gabime/spdlog

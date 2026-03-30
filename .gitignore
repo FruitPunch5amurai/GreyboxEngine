@@ -1,4 +1,4 @@
 GreyboxEngine/.vs/
 .idea
-bin/
-bin-int/
+GreyboxEngine/bin
+GreyboxEngine/bin-int
