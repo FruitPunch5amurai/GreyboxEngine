@@ -1,5 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sandbox", "Sandbox\Sandbox.vcxproj", "{1D51EED9-1390-481F-9BAC-7B95ADB1489C}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GreyboxEngine", "GreyboxEngine\GreyboxEngine.vcxproj", "{80E24B29-B174-43CC-B0CD-ABBF7E68DBCF}"
 EndProject
 Global
@@ -18,5 +20,13 @@ Global
 		{80E24B29-B174-43CC-B0CD-ABBF7E68DBCF}.Release|Win32.Build.0 = Release|Win32
 		{80E24B29-B174-43CC-B0CD-ABBF7E68DBCF}.Release|x64.ActiveCfg = Release|x64
 		{80E24B29-B174-43CC-B0CD-ABBF7E68DBCF}.Release|x64.Build.0 = Release|x64
+		{1D51EED9-1390-481F-9BAC-7B95ADB1489C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1D51EED9-1390-481F-9BAC-7B95ADB1489C}.Debug|Win32.Build.0 = Debug|Win32
+		{1D51EED9-1390-481F-9BAC-7B95ADB1489C}.Debug|x64.ActiveCfg = Debug|x64
+		{1D51EED9-1390-481F-9BAC-7B95ADB1489C}.Debug|x64.Build.0 = Debug|x64
+		{1D51EED9-1390-481F-9BAC-7B95ADB1489C}.Release|Win32.ActiveCfg = Release|Win32
+		{1D51EED9-1390-481F-9BAC-7B95ADB1489C}.Release|Win32.Build.0 = Release|Win32
+		{1D51EED9-1390-481F-9BAC-7B95ADB1489C}.Release|x64.ActiveCfg = Release|x64
+		{1D51EED9-1390-481F-9BAC-7B95ADB1489C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 EndGlobal

@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{80E24B29-B174-43CC-B0CD-ABBF7E68DBCF}</ProjectGuid>
+    <ProjectGuid>{1D51EED9-1390-481F-9BAC-7B95ADB1489C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>GreyboxEngine</RootNamespace>
+    <RootNamespace>Sandbox</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -43,7 +43,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -108,10 +108,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GBE_BUILD_DLL;GBE_PLATFORM_WINDOWS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GBE_PLATFORM_WINDOWS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\GreyboxEngine\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -157,16 +157,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GreyboxEngine.cpp" />
-    <ClCompile Include="src\Application\Application.cpp" />
+    <ClCompile Include="Sandbox.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Application\Application.h" />
-    <ClInclude Include="include\Core.h" />
-    <ClInclude Include="include\GreyboxEngine.h" />
+    <ProjectReference Include="..\GreyboxEngine\GreyboxEngine.vcxproj">
+      <Project>{80e24b29-b174-43cc-b0cd-abbf7e68dbcf}</Project>
+      <Name>GreyboxEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\EntryPoint.h" />
+    <Folder Include="include\" />
+    <Folder Include="src\" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
