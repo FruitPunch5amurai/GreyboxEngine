@@ -111,7 +111,8 @@
       <PreprocessorDefinitions>GBE_BUILD_DLL;GBE_PLATFORM_WINDOWS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\$(ProjectName)\include\;$(SolutionDir)\3rdParty\spdlog\include\;</AdditionalIncludeDirectories>
+      <AdditionalOptions>/utf-8</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -159,11 +160,89 @@
   <ItemGroup>
     <ClCompile Include="GreyboxEngine.cpp" />
     <ClCompile Include="src\Application\Application.cpp" />
+    <ClCompile Include="src\Logging\Logging.cpp">
+      <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <Optimization>Disabled</Optimization>
+      <SupportJustMyCode>true</SupportJustMyCode>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <AssemblerListingLocation>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\bin-int\Debug\x64\GreyboxEngine\</AssemblerListingLocation>
+      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
+      <BrowseInformation>false</BrowseInformation>
+      <BrowseInformationFile>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\bin-int\Debug\x64\GreyboxEngine\</BrowseInformationFile>
+      <CompileAs>Default</CompileAs>
+      <UseDynamicDebugging>false</UseDynamicDebugging>
+      <ConformanceMode>true</ConformanceMode>
+      <DiagnosticsFormat>Column</DiagnosticsFormat>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <ErrorReporting>Prompt</ErrorReporting>
+      <ExpandAttributedSource>false</ExpandAttributedSource>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <EnableASAN>false</EnableASAN>
+      <EnableFuzzer>false</EnableFuzzer>
+      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <EnableVectorLength>NotSet</EnableVectorLength>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <GenerateModuleDependencies>false</GenerateModuleDependencies>
+      <GenerateSourceDependencies>false</GenerateSourceDependencies>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
+      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard_C>Default</LanguageStandard_C>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ModuleDependenciesFile>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\bin-int\Debug\x64\GreyboxEngine\</ModuleDependenciesFile>
+      <ModuleOutputFile>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\bin-int\Debug\x64\GreyboxEngine\</ModuleOutputFile>
+      <OmitDefaultLibName>false</OmitDefaultLibName>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <ObjectFileName>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\bin-int\Debug\x64\GreyboxEngine\</ObjectFileName>
+      <CallingConvention>Cdecl</CallingConvention>
+      <ProgramDataBaseFileName>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\bin-int\Debug\x64\GreyboxEngine\vc143.pdb</ProgramDataBaseFileName>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\bin-int\Debug\x64\GreyboxEngine\GreyboxEngine.pch</PrecompiledHeaderOutputFile>
+      <PreprocessToFile>false</PreprocessToFile>
+      <PreprocessKeepComments>false</PreprocessKeepComments>
+      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
+      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+      <ShowIncludes>false</ShowIncludes>
+      <SourceDependenciesFile>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\bin-int\Debug\x64\GreyboxEngine\</SourceDependenciesFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <SpectreMitigation>false</SpectreMitigation>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <TrackerLogDirectory>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\bin-int\Debug\x64\GreyboxEngine\GreyboxEngine.tlog\</TrackerLogDirectory>
+      <TranslateIncludes>false</TranslateIncludes>
+      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <UseFullPaths>true</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <XMLDocumentationFileName>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\bin-int\Debug\x64\GreyboxEngine\</XMLDocumentationFileName>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <IntelJCCErratum>false</IntelJCCErratum>
+      <BuildStlModules>false</BuildStlModules>
+      <TreatAngleIncludeAsExternal>false</TreatAngleIncludeAsExternal>
+      <ExternalWarningLevel>InheritWarningLevel</ExternalWarningLevel>
+      <TreatExternalTemplatesAsInternal>true</TreatExternalTemplatesAsInternal>
+      <DisableAnalyzeExternal>false</DisableAnalyzeExternal>
+      <PreprocessorDefinitions>GBE_BUILD_DLL;GBE_PLATFORM_WINDOWS;_DEBUG;_CONSOLE;_WINDLL;_UNICODE;UNICODE;</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\\GreyboxEngine\include\;D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\\3rdParty\spdlog\include\;</AdditionalIncludeDirectories>
+      <LinkCompiled>true</LinkCompiled>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Application\Application.h" />
     <ClInclude Include="include\Core.h" />
     <ClInclude Include="include\GreyboxEngine.h" />
+    <ClInclude Include="include\Logging\Logging.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\EntryPoint.h" />

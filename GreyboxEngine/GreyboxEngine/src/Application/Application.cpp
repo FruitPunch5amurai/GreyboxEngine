@@ -2,6 +2,8 @@
 
 #include <cstdio>
 
+#include "Logging/Logging.h"
+
 namespace GreyboxEngine
 {
     Application::Application()
@@ -14,7 +16,14 @@ namespace GreyboxEngine
 
     void Application::Run()
     {
-        printf("Running Greybox Engine");
+        /*
+         *  Initialization
+         */
+        
+        GreyboxEngine::Logging::Init();
+        GBE_INFO("Logging Initialized...");
+        GBE_LOG_INFO("Logging Initialized...");
+
         while(true)
         {
             
