@@ -1,22 +1,81 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="include\Application">
+      <UniqueIdentifier>{CC804ED1-38E2-2BDF-C14F-72912DB0629E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="include\Logging">
+      <UniqueIdentifier>{1F09DD20-8B94-4AE5-94A5-CDD900B0A6E5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Window">
+      <UniqueIdentifier>{50C8C229-3C96-B62F-252A-275611979294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Window\Events">
+      <UniqueIdentifier>{34FAD969-A066-9564-695A-2DC2D585B7CC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Application">
+      <UniqueIdentifier>{701253C7-DC9D-C08B-E5AE-438051B91C8C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Logging">
+      <UniqueIdentifier>{C368B2F1-2F1E-2BE7-B812-25BE24C721EB}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GreyboxEngine.cpp">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="include\Application\Application.h">
+      <Filter>include\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Core.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EntryPoint.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GreyboxEngine.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Logging\Logging.h">
+      <Filter>include\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Window\Events\ApplicationEvent.h">
+      <Filter>include\Window\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Window\Events\Event.h">
+      <Filter>include\Window\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Window\Events\KeyEvent.h">
+      <Filter>include\Window\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Window\Events\MouseEvent.h">
+      <Filter>include\Window\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Window\KeyCodes.h">
+      <Filter>include\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Window\MouseCodes.h">
+      <Filter>include\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gbepch.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Application\Application.cpp">
+      <Filter>src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GreyboxEngine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logging\Logging.cpp">
+      <Filter>src\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gbepch.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
-﻿#include "Logging/Logging.h"
+﻿#include "gbepch.h"
+#include "Logging/Logging.h"
 
 #include "spdlog/sinks/stdout_color_sinks.h"
 
