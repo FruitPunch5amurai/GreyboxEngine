@@ -11,20 +11,20 @@ namespace  GreyboxEngine
     public:
         static void Init();
 
-        inline static std::shared_ptr<spdlog::logger> & GetEngineLogger() {return s_EngineLogger;}
+        inline static std::shared_ptr<spdlog::logger> & GetCoreLogger() {return s_CoreLogger;}
         inline static std::shared_ptr<spdlog::logger> & GetClientLogger() {return s_ClientLogger;}
  
     private:
-        static  std::shared_ptr<spdlog::logger> s_EngineLogger;
+        static  std::shared_ptr<spdlog::logger> s_CoreLogger;
         static  std::shared_ptr<spdlog::logger> s_ClientLogger;
         
     };
 }
 
 // For use by Engine
-#define GBE_ERROR(...) ::GreyboxEngine::Logging::GetEngineLogger()->error(__VA_ARGS__)
-#define GBE_WARN(...) ::GreyboxEngine::Logging::GetEngineLogger()->warn(__VA_ARGS__)
-#define GBE_INFO(...) ::GreyboxEngine::Logging::GetEngineLogger()->info(__VA_ARGS__)
+#define GBE_CORE_ERROR(...) ::GreyboxEngine::Logging::GetCoreLogger()->error(__VA_ARGS__)
+#define GBE_CORE_WARN(...) ::GreyboxEngine::Logging::GetCoreLogger()->warn(__VA_ARGS__)
+#define GBE_CORE_INFO(...) ::GreyboxEngine::Logging::GetCoreLogger()->info(__VA_ARGS__)
 
 // For use by Client
 #define GBE_LOG_ERROR(...) ::GreyboxEngine::Logging::GetClientLogger()->error(__VA_ARGS__)

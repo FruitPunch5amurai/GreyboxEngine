@@ -16,6 +16,9 @@
     <Filter Include="include\Window\Events">
       <UniqueIdentifier>{34FAD969-A066-9564-695A-2DC2D585B7CC}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\Window\Platform">
+      <UniqueIdentifier>{A45E5F64-1096-A7FB-19A0-0B1F8556CEF4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
@@ -24,6 +27,12 @@
     </Filter>
     <Filter Include="src\Logging">
       <UniqueIdentifier>{C368B2F1-2F1E-2BE7-B812-25BE24C721EB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Window">
+      <UniqueIdentifier>{74C3D837-607B-1A85-C982-F3E0B559B575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Window\Platform">
+      <UniqueIdentifier>{4822DC07-B483-B915-3DF1-FFC7A951F0D4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +69,12 @@
     <ClInclude Include="include\Window\MouseCodes.h">
       <Filter>include\Window</Filter>
     </ClInclude>
+    <ClInclude Include="include\Window\Platform\WindowsWindow.h">
+      <Filter>include\Window\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Window\Window.h">
+      <Filter>include\Window</Filter>
+    </ClInclude>
     <ClInclude Include="include\gbepch.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -73,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="src\Logging\Logging.cpp">
       <Filter>src\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window\Platform\WindowsWindow.cpp">
+      <Filter>src\Window\Platform</Filter>
     </ClCompile>
     <ClCompile Include="src\gbepch.cpp">
       <Filter>src</Filter>

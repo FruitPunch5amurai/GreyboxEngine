@@ -4,6 +4,7 @@
 #include <cstdio>
 
 #include "Logging/Logging.h"
+#include "Window/Window.h"
 #include "Window/Events/ApplicationEvent.h"
 #include "Window/Events/Event.h"
 
@@ -11,6 +12,9 @@ namespace GreyboxEngine
 {
     Application::Application()
     {
+        GreyboxEngine::Logging::Init();
+        
+        m_window = std::unique_ptr<Window>(Window::Create());
     }
 
     Application::~Application()
@@ -19,23 +23,9 @@ namespace GreyboxEngine
 
     void Application::Run()
     {
-        /*
-         *  Initialization
-         */
-        
-        GreyboxEngine::Logging::Init();
-        GBE_INFO("Logging Initialized...");
-        GBE_LOG_INFO("Logging Initialized...");
-
-        WindowResizeEvent e(1280, 720);
-        if (e.GetEventType() == EventType::WindowResize)
+        while(m_running)
         {
-            GBE_LOG_INFO(e.ToString());
-        }
-        
-        while(true)
-        {
-            
+            m_window->OnUpdate();
         }
     }
 }

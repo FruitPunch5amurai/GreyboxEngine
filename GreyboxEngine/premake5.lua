@@ -45,14 +45,13 @@ project "GreyboxEngine"
     }
     
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
         
     defines
     {
         "GBE_BUILD_DLL", 
-        "GBE_PLATFORM_WINDOWS"
+        "GBE_PLATFORM_WINDOWS",
+        "GLFW_INCLUDE_NONE"
     }
     
     postbuildcommands
@@ -96,8 +95,6 @@ project "Sandbox"
         }
         
         filter "system:windows"
-            cppdialect "C++17"
-            staticruntime "On"
             systemversion "latest"
             
         defines
@@ -106,7 +103,7 @@ project "Sandbox"
         }
         
         filter "configurations:Debug"
-            defines "GBE_DEBUG"
+            defines "GBE_DEBUG GBE_ENABLE_ASSERTS"
             symbols "On"
         filter "configurations:Release"
             defines "GBE_RELEASE"
