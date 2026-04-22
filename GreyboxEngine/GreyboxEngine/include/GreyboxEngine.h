@@ -3,7 +3,6 @@
 #include <cstdio>
 
 // For use in applications
-
 #include "Application/Application.h"
 
 // Logging

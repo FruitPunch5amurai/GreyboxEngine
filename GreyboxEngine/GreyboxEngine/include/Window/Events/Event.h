@@ -47,23 +47,18 @@ namespace GreyboxEngine
     {
         
     public:
-        EventDispatcher(Event& event): m_event(event)
-        {
-        }
+        EventDispatcher(){}
 
         template <typename T, typename F>
-        bool Dispatch(const F& func)
+        bool Dispatch(Event& e, const F& func)
         {
-            if (m_event.GetEventType() == T::GetStaticType())
+            if (e.GetEventType() == T::GetStaticType())
             {
-                m_event.Handled = func(*(T*)&m_event);
+                e.Handled = func(*(T*)&e);
                 return true;
             }
             return false;
         }
-
-    private:
-        Event& m_event;
     };
 
     inline std::ostream& operator<<(std::ostream& os, const Event& e)

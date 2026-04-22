@@ -16,6 +16,9 @@
     <Filter Include="include\Window\Events">
       <UniqueIdentifier>{34FAD969-A066-9564-695A-2DC2D585B7CC}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\Window\Layers">
+      <UniqueIdentifier>{0FE5BC78-7B51-7873-4445-10D1B0709ADB}</UniqueIdentifier>
+    </Filter>
     <Filter Include="include\Window\Platform">
       <UniqueIdentifier>{A45E5F64-1096-A7FB-19A0-0B1F8556CEF4}</UniqueIdentifier>
     </Filter>
@@ -30,6 +33,9 @@
     </Filter>
     <Filter Include="src\Window">
       <UniqueIdentifier>{74C3D837-607B-1A85-C982-F3E0B559B575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Window\Layers">
+      <UniqueIdentifier>{B36F2C02-1F86-2A98-68FD-B5B9D452FB1F}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Window\Platform">
       <UniqueIdentifier>{4822DC07-B483-B915-3DF1-FFC7A951F0D4}</UniqueIdentifier>
@@ -66,6 +72,12 @@
     <ClInclude Include="include\Window\KeyCodes.h">
       <Filter>include\Window</Filter>
     </ClInclude>
+    <ClInclude Include="include\Window\Layers\Layer.h">
+      <Filter>include\Window\Layers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Window\Layers\LayerStack.h">
+      <Filter>include\Window\Layers</Filter>
+    </ClInclude>
     <ClInclude Include="include\Window\MouseCodes.h">
       <Filter>include\Window</Filter>
     </ClInclude>
@@ -88,6 +100,12 @@
     </ClCompile>
     <ClCompile Include="src\Logging\Logging.cpp">
       <Filter>src\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window\Layers\Layer.cpp">
+      <Filter>src\Window\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window\Layers\LayerStack.cpp">
+      <Filter>src\Window\Layers</Filter>
     </ClCompile>
     <ClCompile Include="src\Window\Platform\WindowsWindow.cpp">
       <Filter>src\Window\Platform</Filter>

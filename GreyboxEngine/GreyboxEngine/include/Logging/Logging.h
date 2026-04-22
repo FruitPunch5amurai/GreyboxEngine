@@ -25,8 +25,10 @@ namespace  GreyboxEngine
 #define GBE_CORE_ERROR(...) ::GreyboxEngine::Logging::GetCoreLogger()->error(__VA_ARGS__)
 #define GBE_CORE_WARN(...) ::GreyboxEngine::Logging::GetCoreLogger()->warn(__VA_ARGS__)
 #define GBE_CORE_INFO(...) ::GreyboxEngine::Logging::GetCoreLogger()->info(__VA_ARGS__)
+#define GBE_CORE_TRACE(...) ::GreyboxEngine::Logging::GetCoreLogger()->trace(__VA_ARGS__)
 
 // For use by Client
 #define GBE_LOG_ERROR(...) ::GreyboxEngine::Logging::GetClientLogger()->error(__VA_ARGS__)
 #define GBE_LOG_WARN(...) ::GreyboxEngine::Logging::GetClientLogger()->warn(__VA_ARGS__)
 #define GBE_LOG_INFO(...) ::GreyboxEngine::Logging::GetClientLogger()->info(__VA_ARGS__)
+#define GBE_LOG_TRACE(...) ::GreyboxEngine::Logging::GetClientLogger()->trace(__VA_ARGS__)

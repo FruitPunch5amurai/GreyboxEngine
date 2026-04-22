@@ -83,7 +83,7 @@
       <AdditionalIncludeDirectories>3rdParty\spdlog\include;include;3rdParty\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /MDd %(AdditionalOptions)</AdditionalOptions>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -107,7 +107,7 @@
       <AdditionalIncludeDirectories>3rdParty\spdlog\include;include;3rdParty\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -131,7 +131,7 @@
       <AdditionalIncludeDirectories>3rdParty\spdlog\include;include;3rdParty\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -157,6 +157,8 @@
     <ClInclude Include="include\Window\Events\KeyEvent.h" />
     <ClInclude Include="include\Window\Events\MouseEvent.h" />
     <ClInclude Include="include\Window\KeyCodes.h" />
+    <ClInclude Include="include\Window\Layers\Layer.h" />
+    <ClInclude Include="include\Window\Layers\LayerStack.h" />
     <ClInclude Include="include\Window\MouseCodes.h" />
     <ClInclude Include="include\Window\Platform\WindowsWindow.h" />
     <ClInclude Include="include\Window\Window.h" />
@@ -166,6 +168,8 @@
     <ClCompile Include="src\Application\Application.cpp" />
     <ClCompile Include="src\GreyboxEngine.cpp" />
     <ClCompile Include="src\Logging\Logging.cpp" />
+    <ClCompile Include="src\Window\Layers\Layer.cpp" />
+    <ClCompile Include="src\Window\Layers\LayerStack.cpp" />
     <ClCompile Include="src\Window\Platform\WindowsWindow.cpp" />
     <ClCompile Include="src\gbepch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
