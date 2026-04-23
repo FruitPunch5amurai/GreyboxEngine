@@ -23,6 +23,7 @@ public:
     Sandbox()
     {
         PushLayer(new TestLayer());
+        PushOverlay(new GreyboxEngine::ImGuiLayer());
     }
     ~Sandbox(){}
 };

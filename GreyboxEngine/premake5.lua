@@ -11,8 +11,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 	
 IncludeDir = {}
 IncludeDir["GLFW"] = "GreyboxEngine/3rdParty/GLFW/include"
+IncludeDir["Glad"] = "GreyboxEngine/3rdParty/Glad/include"
+IncludeDir["ImGui"] = "GreyboxEngine/3rdParty/imgui"
 
-include "GreyboxEngine/3rdParty/GLFW"	
+include "GreyboxEngine/3rdParty/GLFW"
+include "GreyboxEngine/3rdParty/Glad"
+include "GreyboxEngine/3rdParty/imgui"
 
 project "GreyboxEngine"
     location "GreyboxEngine"
@@ -35,12 +39,16 @@ project "GreyboxEngine"
     {
         "%{prj.name}/3rdParty/spdlog/include/",
         "%{prj.name}/include/",
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}"
     }
     
     links
     {
         "GLFW",
+        "GLAD",
+        "ImGui",
         "opengl32.lib"
     }
     
@@ -102,7 +110,7 @@ project "Sandbox"
             
         defines
         {
-            "GBE_PLATFORM_WINDOWS"
+            "GBE_PLATFORM_WINDOWS",
         }
         
         filter "configurations:Debug"

@@ -12,10 +12,12 @@ namespace GreyboxEngine
 {
     #define BIND_EVENT_FN(x) std::bind(x, this, std::placeholders::_1)
 
+    Application* Application::s_instance = nullptr;
+    
     Application::Application()
     {
         GreyboxEngine::Logging::Init();
-        
+        s_instance = this;
         m_window = std::unique_ptr<Window>(Window::Create());
         m_window->SetEventCallback(BIND_EVENT_FN(&Application::OnEvent));
     }
@@ -27,11 +29,13 @@ namespace GreyboxEngine
     void Application::PushLayer(Layer* layer)
     {
         m_layerStack.PushLayer(layer);
+        layer->OnAttach();
     }
 
     void Application::PushOverlay(Layer* layer)
     {
         m_layerStack.PushOverlay(layer);
+        layer->OnAttach();
     }
     
     void Application::OnEvent(Event& e)

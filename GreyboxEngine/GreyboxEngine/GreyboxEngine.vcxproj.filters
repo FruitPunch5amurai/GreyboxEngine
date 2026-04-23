@@ -7,6 +7,9 @@
     <Filter Include="include\Application">
       <UniqueIdentifier>{CC804ED1-38E2-2BDF-C14F-72912DB0629E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\ImGui">
+      <UniqueIdentifier>{73E730A3-DFA7-ACD9-A8E2-F5561462F1B5}</UniqueIdentifier>
+    </Filter>
     <Filter Include="include\Logging">
       <UniqueIdentifier>{1F09DD20-8B94-4AE5-94A5-CDD900B0A6E5}</UniqueIdentifier>
     </Filter>
@@ -22,11 +25,17 @@
     <Filter Include="include\Window\Platform">
       <UniqueIdentifier>{A45E5F64-1096-A7FB-19A0-0B1F8556CEF4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\Window\Platform\OpenGL">
+      <UniqueIdentifier>{58A7324C-44CD-FCB2-2D13-827E19D8217F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Application">
       <UniqueIdentifier>{701253C7-DC9D-C08B-E5AE-438051B91C8C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ImGui">
+      <UniqueIdentifier>{170E22B3-8378-D629-CCB6-87CF3860B47E}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Logging">
       <UniqueIdentifier>{C368B2F1-2F1E-2BE7-B812-25BE24C721EB}</UniqueIdentifier>
@@ -39,6 +48,9 @@
     </Filter>
     <Filter Include="src\Window\Platform">
       <UniqueIdentifier>{4822DC07-B483-B915-3DF1-FFC7A951F0D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Window\Platform\OpenGL">
+      <UniqueIdentifier>{7C6A822B-687A-2EFC-D133-931ABD621D95}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +65,9 @@
     </ClInclude>
     <ClInclude Include="include\GreyboxEngine.h">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ImGui\ImGuiLayer.h">
+      <Filter>include\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="include\Logging\Logging.h">
       <Filter>include\Logging</Filter>
@@ -81,6 +96,12 @@
     <ClInclude Include="include\Window\MouseCodes.h">
       <Filter>include\Window</Filter>
     </ClInclude>
+    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiGLFWBackend.h">
+      <Filter>include\Window\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>include\Window\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="include\Window\Platform\WindowsWindow.h">
       <Filter>include\Window\Platform</Filter>
     </ClInclude>
@@ -98,6 +119,9 @@
     <ClCompile Include="src\GreyboxEngine.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\ImGui\ImGuiLayer.cpp">
+      <Filter>src\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\Logging\Logging.cpp">
       <Filter>src\Logging</Filter>
     </ClCompile>
@@ -106,6 +130,9 @@
     </ClCompile>
     <ClCompile Include="src\Window\Layers\LayerStack.cpp">
       <Filter>src\Window\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>src\Window\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Window\Platform\WindowsWindow.cpp">
       <Filter>src\Window\Platform</Filter>

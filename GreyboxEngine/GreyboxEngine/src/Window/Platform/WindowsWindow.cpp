@@ -6,6 +6,7 @@
 #include "Window/Events/Event.h"
 #include "Window/Events/KeyEvent.h"
 #include "Window/Events/MouseEvent.h"
+#include <glad/glad.h>
 
 namespace GreyboxEngine
 {
@@ -46,9 +47,16 @@ namespace GreyboxEngine
                                     nullptr, nullptr);
 
         glfwMakeContextCurrent(m_window);
+
+        // GLAD Stuff
+        int status = gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
+        GBE_CORE_ASSERT(status, "Failed to initialize Glad");
+        
         glfwSetWindowUserPointer(m_window, &m_data);
         SetVSync(true);
 
+
+        
         //GLFW Events
         glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, const int width, const int height)
         {

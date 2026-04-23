@@ -26,11 +26,14 @@ namespace GreyboxEngine
 
         void PushLayer(Layer* layer);
         void PushOverlay(Layer* layer);
-        
+
+        inline static Application& Get(){return *s_instance;}
+        inline Window& GetWindow(){return *m_window;}
     private:
         std::unique_ptr<Window> m_window;
         EventDispatcher m_eventDispatcher;
-
+        static Application* s_instance;
+        
         bool m_running = true;
         LayerStack m_layerStack;
     };

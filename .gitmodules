@@ -7,3 +7,6 @@
 [submodule "GreyboxEngine/GreyboxEngine/3rdParty/GLFW"]
 	path = GreyboxEngine/GreyboxEngine/3rdParty/GLFW
 	url = https://github.com/TheCherno/GLFW
+[submodule "GreyboxEngine/GreyboxEngine/3rdParty/imgui"]
+	path = GreyboxEngine/GreyboxEngine/3rdParty/imgui
+	url = https://github.com/TheCherno/imgui
