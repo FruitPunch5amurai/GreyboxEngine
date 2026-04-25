@@ -6,6 +6,8 @@
     #else
         #define GBE_API __declspec(dllimport)
     #endif
+    #define GBE_RENDER_API_OPENGL
+    #define GBE_WINDOW_API_GLFW
 #else
     #error Greybox Engine only supports windows :(
 #endif
@@ -17,3 +19,5 @@
     #define GBE_ASSERT(x, ...)
     #define GBE_CORE_ASSERT(x, ...)
 #endif
+
+#define GBE_BIND_EVENT_FN(x) std::bind(x, this, std::placeholders::_1)

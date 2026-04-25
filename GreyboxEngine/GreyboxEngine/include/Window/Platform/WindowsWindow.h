@@ -21,9 +21,10 @@ namespace GreyboxEngine
         void SetVSync(bool enabled) override;
         bool IsVSync() const override;
 
-        virtual void* GetNativeWindow() const { return m_window; }
+        void* GetNativeWindow() const override { return m_window; }
+
+        // TESTING
     private:
-        GLFWwindow* m_window;
         struct WindowData
         {
             std::string Title;
@@ -33,6 +34,7 @@ namespace GreyboxEngine
             EventCallbackFn EventCallback;
         };
 
+        GLFWwindow* m_window;
         WindowData m_data;
 
         virtual void Init(const WindowProps& props);

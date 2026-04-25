@@ -2,6 +2,7 @@
 
 #include "Core.h"
 #include "Window/Window.h"
+#include "Window/Events/KeyEvent.h"
 #include "Window/Layers/LayerStack.h"
 
 namespace GreyboxEngine
@@ -26,9 +27,12 @@ namespace GreyboxEngine
 
         void PushLayer(Layer* layer);
         void PushOverlay(Layer* layer);
-
+        void PopLayer(Layer* layer);
+        void PopOverlay(Layer* layer);
+        
         inline static Application& Get(){return *s_instance;}
         inline Window& GetWindow(){return *m_window;}
+        
     private:
         std::unique_ptr<Window> m_window;
         EventDispatcher m_eventDispatcher;
@@ -36,6 +40,7 @@ namespace GreyboxEngine
         
         bool m_running = true;
         LayerStack m_layerStack;
+        
     };
 
     // To be define in client

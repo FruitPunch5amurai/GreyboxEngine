@@ -43,6 +43,13 @@ namespace GreyboxEngine
             s_GLFWInitialized = true;
         }
 
+        // Hints
+        const char* glsl_version = "#version 410";
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // Required on Mac
+
         m_window = glfwCreateWindow(static_cast<int>(props.Width), static_cast<int>(props.Height), props.Title.c_str(),
                                     nullptr, nullptr);
 
@@ -54,8 +61,6 @@ namespace GreyboxEngine
         
         glfwSetWindowUserPointer(m_window, &m_data);
         SetVSync(true);
-
-
         
         //GLFW Events
         glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, const int width, const int height)
@@ -109,13 +114,13 @@ namespace GreyboxEngine
             {
             case GLFW_PRESS:
                 {
-                    KeyPressedEvent event(button, 0);
+                    MouseButtonPressedEvent event(button);
                     data.EventCallback(event);
                     break;
                 }
             case GLFW_RELEASE:
                 {
-                    KeyReleasedEvent event(button);
+                    MouseButtonReleasedEvent event(button);
                     data.EventCallback(event);
                     break;
                 }
@@ -143,6 +148,15 @@ namespace GreyboxEngine
         {
             GBE_CORE_ERROR("GLFW Error {0}: {1}", error_code, description);
         });
+
+        glfwSetCharCallback(m_window, [](GLFWwindow* window, unsigned int c)
+        {
+            const WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
+
+            KeyTypedEvent event(c);
+            data.EventCallback(event);
+        });
+        
     }
 
     void WindowsWindow::Shutdown()

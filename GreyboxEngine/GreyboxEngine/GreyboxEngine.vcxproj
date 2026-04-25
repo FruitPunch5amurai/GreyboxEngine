@@ -152,7 +152,10 @@
     <ClInclude Include="include\EntryPoint.h" />
     <ClInclude Include="include\GreyboxEngine.h" />
     <ClInclude Include="include\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="include\Input\Input.h" />
+    <ClInclude Include="include\Input\KeyCode.h" />
     <ClInclude Include="include\Logging\Logging.h" />
+    <ClInclude Include="include\Platform\PlatformUtils.h" />
     <ClInclude Include="include\Window\Events\ApplicationEvent.h" />
     <ClInclude Include="include\Window\Events\Event.h" />
     <ClInclude Include="include\Window\Events\KeyEvent.h" />
@@ -163,6 +166,7 @@
     <ClInclude Include="include\Window\MouseCodes.h" />
     <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLLoader.h" />
+    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiImplGLFW.h" />
     <ClInclude Include="include\Window\Platform\WindowsWindow.h" />
     <ClInclude Include="include\Window\Window.h" />
     <ClInclude Include="include\gbepch.h" />
@@ -171,7 +175,9 @@
     <ClCompile Include="src\Application\Application.cpp" />
     <ClCompile Include="src\GreyboxEngine.cpp" />
     <ClCompile Include="src\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\Logging\Logging.cpp" />
+    <ClCompile Include="src\Platform\PlatformUtils.cpp" />
     <ClCompile Include="src\Window\Layers\Layer.cpp" />
     <ClCompile Include="src\Window\Layers\LayerStack.cpp" />
     <ClCompile Include="src\Window\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
@@ -251,6 +257,7 @@
       <AdditionalOptions>/utf-8 /MDd </AdditionalOptions>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="src\Window\Platform\OpenGL\ImGuiImplGLFW.cpp" />
     <ClCompile Include="src\Window\Platform\WindowsWindow.cpp" />
     <ClCompile Include="src\gbepch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

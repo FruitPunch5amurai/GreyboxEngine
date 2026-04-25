@@ -3,14 +3,18 @@
 
 #include <cstdio>
 
+#include "GLFW/glfw3.h"
+#include "Input/Input.h"
 #include "Logging/Logging.h"
+#include "Platform/PlatformUtils.h"
 #include "Window/Window.h"
 #include "Window/Events/ApplicationEvent.h"
 #include "Window/Events/Event.h"
+#include "Window/Events/MouseEvent.h"
+#include "Input/KeyCode.h"
 
 namespace GreyboxEngine
 {
-    #define BIND_EVENT_FN(x) std::bind(x, this, std::placeholders::_1)
 
     Application* Application::s_instance = nullptr;
     
@@ -19,7 +23,7 @@ namespace GreyboxEngine
         GreyboxEngine::Logging::Init();
         s_instance = this;
         m_window = std::unique_ptr<Window>(Window::Create());
-        m_window->SetEventCallback(BIND_EVENT_FN(&Application::OnEvent));
+        m_window->SetEventCallback(GBE_BIND_EVENT_FN(&Application::OnEvent));
     }
 
     Application::~Application()
@@ -37,10 +41,22 @@ namespace GreyboxEngine
         m_layerStack.PushOverlay(layer);
         layer->OnAttach();
     }
-    
+
+    void Application::PopLayer(Layer* layer)
+    {
+        m_layerStack.PopLayer(layer);
+        layer->OnDetach();
+    }
+
+    void Application::PopOverlay(Layer* layer)
+    {
+        m_layerStack.PopOverlay(layer);
+        layer->OnDetach();
+    }
+
     void Application::OnEvent(Event& e)
     {
-        m_eventDispatcher.Dispatch<WindowCloseEvent>(e,BIND_EVENT_FN(&Application::OnWindowCloseEvent));
+        m_eventDispatcher.Dispatch<WindowCloseEvent>(e,GBE_BIND_EVENT_FN(&Application::OnWindowCloseEvent));
         
         GBE_CORE_INFO("{0}", e.ToString());
 
@@ -62,11 +78,15 @@ namespace GreyboxEngine
     {
         while(m_running)
         {
+            const float time = Time::GetTime();
+            
             for (Layer* layer : m_layerStack)
             {
-                layer->OnUpdate();
+                layer->OnUpdate(time);
             }
+            
             m_window->OnUpdate();
+            
         }
     }
 
