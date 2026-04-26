@@ -9,10 +9,6 @@
 #include <glad/glad.h>
 #endif
 
-#include "Window/Events/MouseEvent.h"
-#include "Window/Events/KeyEvent.h"
-#include "Window/Events/ApplicationEvent.h"
-
 #include "Window/Platform/WindowsWindow.h"
 #include "Window/Platform/OpenGL/ImGuiOpenGLRenderer.h"
 
@@ -123,18 +119,17 @@ namespace GreyboxEngine
         m_eventDispatcher.Dispatch<MouseButtonReleasedEvent>(
             event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnMouseButtonReleasedEvent));
         m_eventDispatcher.Dispatch<MouseMovedEvent>(event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnMouseMovedEvent));
-        m_eventDispatcher.Dispatch<MouseScrolledEvent>(event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnMouseScrollEvent));
+        m_eventDispatcher.Dispatch<MouseScrollEvent>(event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnMouseScrollEvent));
         m_eventDispatcher.Dispatch<KeyPressedEvent>(event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnKeyPressed));
         m_eventDispatcher.Dispatch<KeyReleasedEvent>(event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnKeyReleased));
         m_eventDispatcher.Dispatch<KeyTypedEvent>(event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnKeyTypedEvent));
         m_eventDispatcher.Dispatch<WindowResizeEvent>(event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnWindowResizeEvent));
     }
-
-
+    
     bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent& e)
     {
         ImGuiIO& io = ImGui::GetIO();
-        io.MouseDown[e.GetMouseButton()] = true;
+        io.MouseDown[e.button] = true;
 
         return false;
     }
@@ -142,7 +137,7 @@ namespace GreyboxEngine
     bool ImGuiLayer::OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& e)
     {
         ImGuiIO& io = ImGui::GetIO();
-        io.MouseDown[e.GetMouseButton()] = false;
+        io.MouseDown[e.button] = false;
 
         return false;
     }
@@ -150,16 +145,16 @@ namespace GreyboxEngine
     bool ImGuiLayer::OnMouseMovedEvent(MouseMovedEvent& e)
     {
         ImGuiIO& io = ImGui::GetIO();
-        io.MousePos = ImVec2(e.GetX(), e.GetY());
+        io.MousePos = ImVec2(e.x, e.y);
 
         return false;
     }
 
-    bool ImGuiLayer::OnMouseScrollEvent(MouseScrolledEvent& e)
+    bool ImGuiLayer::OnMouseScrollEvent(MouseScrollEvent& e)
     {
         ImGuiIO& io = ImGui::GetIO();
-        io.MouseWheel += e.GetYOffset();
-        io.MouseWheelH += e.GetXOffset();
+        io.MouseWheel += e.y;
+        io.MouseWheelH += e.x;
 
         return false;
     }
@@ -167,7 +162,7 @@ namespace GreyboxEngine
     bool ImGuiLayer::OnKeyPressed(KeyPressedEvent& e)
     {
         ImGuiIO& io = ImGui::GetIO();
-        io.KeysDown[e.GetKeyCode()] = true;
+        io.KeysDown[e.key] = true;
 #ifdef GBE_WINDOW_API_GLFW
         io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
         io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
@@ -180,7 +175,7 @@ namespace GreyboxEngine
     bool ImGuiLayer::OnKeyReleased(KeyReleasedEvent& e)
     {
         ImGuiIO& io = ImGui::GetIO();
-        io.KeysDown[e.GetKeyCode()] = false;
+        io.KeysDown[e.key] = false;
 
         return false;
     }
@@ -188,7 +183,7 @@ namespace GreyboxEngine
     bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent& e)
     {
         ImGuiIO& io = ImGui::GetIO();
-        const int keyCode = e.GetKeyCode();
+        const int keyCode = e.keyCode;
         if (keyCode > 0 && keyCode < 0x10000)
         {
             io.AddInputCharacter(static_cast<unsigned short>(keyCode));
@@ -200,11 +195,11 @@ namespace GreyboxEngine
     bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent& e)
     {
         ImGuiIO& io = ImGui::GetIO();
-        io.DisplaySize = ImVec2(e.GetWidth(), e.GetHeight());
+        io.DisplaySize = ImVec2(e.width, e.height);
         io.DisplayFramebufferScale = ImVec2(1.f, 1.f);
 
 #ifdef GBE_WINDOW_API_GLFW
-        glViewport(0, 0, e.GetWidth(), e.GetHeight());
+        glViewport(0, 0, e.width, e.height);
 #endif
 
         return false;

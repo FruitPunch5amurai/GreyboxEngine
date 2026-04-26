@@ -4,14 +4,6 @@
 
 namespace GreyboxEngine
 {
-    class KeyTypedEvent;
-    class KeyReleasedEvent;
-    class KeyPressedEvent;
-    class MouseMovedEvent;
-    class MouseButtonReleasedEvent;
-    class MouseScrolledEvent;
-    class MouseButtonPressedEvent;
-    class WindowResizeEvent;
     
     class GBE_API ImGuiLayer : public Layer
     {
@@ -31,7 +23,7 @@ namespace GreyboxEngine
         bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& e);
         bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& e);
         bool OnMouseMovedEvent(MouseMovedEvent& e);
-        bool OnMouseScrollEvent(MouseScrolledEvent& e);
+        bool OnMouseScrollEvent(MouseScrollEvent& e);
         bool OnKeyPressed(KeyPressedEvent& e);
         bool OnKeyReleased(KeyReleasedEvent& e);
         bool OnKeyTypedEvent(KeyTypedEvent& e);

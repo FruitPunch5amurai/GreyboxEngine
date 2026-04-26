@@ -10,8 +10,14 @@
     <Filter Include="include\ImGui">
       <UniqueIdentifier>{73E730A3-DFA7-ACD9-A8E2-F5561462F1B5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\Input">
+      <UniqueIdentifier>{482232A3-B4E2-ADD9-7D1D-F756E99CF2B5}</UniqueIdentifier>
+    </Filter>
     <Filter Include="include\Logging">
       <UniqueIdentifier>{1F09DD20-8B94-4AE5-94A5-CDD900B0A6E5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Platform">
+      <UniqueIdentifier>{FD7581F9-E96E-A04B-12A1-85D0FEF87F57}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\Window">
       <UniqueIdentifier>{50C8C229-3C96-B62F-252A-275611979294}</UniqueIdentifier>
@@ -37,8 +43,14 @@
     <Filter Include="src\ImGui">
       <UniqueIdentifier>{170E22B3-8378-D629-CCB6-87CF3860B47E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Input">
+      <UniqueIdentifier>{EC4823B3-58B3-D729-A1F1-88CF0D9BB57E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Logging">
       <UniqueIdentifier>{C368B2F1-2F1E-2BE7-B812-25BE24C721EB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform">
+      <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Window">
       <UniqueIdentifier>{74C3D837-607B-1A85-C982-F3E0B559B575}</UniqueIdentifier>
@@ -69,8 +81,17 @@
     <ClInclude Include="include\ImGui\ImGuiLayer.h">
       <Filter>include\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="include\Input\Input.h">
+      <Filter>include\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input\KeyCode.h">
+      <Filter>include\Input</Filter>
+    </ClInclude>
     <ClInclude Include="include\Logging\Logging.h">
       <Filter>include\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Platform\PlatformUtils.h">
+      <Filter>include\Platform</Filter>
     </ClInclude>
     <ClInclude Include="include\Window\Events\ApplicationEvent.h">
       <Filter>include\Window\Events</Filter>
@@ -96,7 +117,10 @@
     <ClInclude Include="include\Window\MouseCodes.h">
       <Filter>include\Window</Filter>
     </ClInclude>
-    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiGLFWBackend.h">
+    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiImplGLFW.h">
+      <Filter>include\Window\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLLoader.h">
       <Filter>include\Window\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLRenderer.h">
@@ -122,14 +146,23 @@
     <ClCompile Include="src\ImGui\ImGuiLayer.cpp">
       <Filter>src\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="src\Input\Input.cpp">
+      <Filter>src\Input</Filter>
+    </ClCompile>
     <ClCompile Include="src\Logging\Logging.cpp">
       <Filter>src\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\PlatformUtils.cpp">
+      <Filter>src\Platform</Filter>
     </ClCompile>
     <ClCompile Include="src\Window\Layers\Layer.cpp">
       <Filter>src\Window\Layers</Filter>
     </ClCompile>
     <ClCompile Include="src\Window\Layers\LayerStack.cpp">
       <Filter>src\Window\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window\Platform\OpenGL\ImGuiImplGLFW.cpp">
+      <Filter>src\Window\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Window\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
       <Filter>src\Window\Platform\OpenGL</Filter>

@@ -12,6 +12,8 @@ namespace GreyboxEngine
         WindowsWindow(const WindowProps& props);
         ~WindowsWindow() override;
 
+        void Begin() override;
+        void End() override;
         void OnUpdate() override;
 
         unsigned int GetWidth() const override {return m_data.Width; }
@@ -20,7 +22,8 @@ namespace GreyboxEngine
         void SetEventCallback(const EventCallbackFn& callback) override {m_data.EventCallback = callback; }
         void SetVSync(bool enabled) override;
         bool IsVSync() const override;
-
+        void Close() override;
+        bool IsClosing() override;
         void* GetNativeWindow() const override { return m_window; }
 
         // TESTING

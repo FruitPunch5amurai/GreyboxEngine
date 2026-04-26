@@ -1,11 +1,7 @@
 ﻿#include "gbepch.h"
 #include "Window/Platform/WindowsWindow.h"
 #include "Logging/Logging.h"
-#include "Window/KeyCodes.h"
-#include "Window/Events/ApplicationEvent.h"
 #include "Window/Events/Event.h"
-#include "Window/Events/KeyEvent.h"
-#include "Window/Events/MouseEvent.h"
 #include <glad/glad.h>
 
 namespace GreyboxEngine
@@ -69,38 +65,41 @@ namespace GreyboxEngine
             data.Width = width;
             data.Height = height;
 
-            WindowResizeEvent event(width, height);
-            data.EventCallback(event);
+            Event e;
+            e.data = WindowResizeEvent{width, height};
+            data.EventCallback(e);
         });
 
         glfwSetWindowCloseCallback(m_window, [](GLFWwindow* window)
         {
             const WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
-            WindowCloseEvent event;
-            data.EventCallback(event);
+            Event e;
+            e.data = WindowCloseEvent{};
+            data.EventCallback(e);
         });
-
+        
         glfwSetKeyCallback(m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
         {
             const WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
+            Event e;
             switch (action)
             {
             case GLFW_PRESS:
                 {
-                    KeyPressedEvent event(key, 0);
-                    data.EventCallback(event);
+                    e.data = KeyPressedEvent{key, 0};
+                    data.EventCallback(e);
                     break;
                 }
             case GLFW_RELEASE:
                 {
-                    KeyReleasedEvent event(key);
-                    data.EventCallback(event);
+                    e.data = KeyReleasedEvent{key};
+                    data.EventCallback(e);
                     break;
                 }
             case GLFW_REPEAT:
                 {
-                    KeyPressedEvent event(key, 1);
-                    data.EventCallback(event);
+                    e.data = KeyPressedEvent{key, 1};
+                    data.EventCallback(e);
                     break;
                 }
             default: break;
@@ -110,18 +109,19 @@ namespace GreyboxEngine
         glfwSetMouseButtonCallback(m_window, [](GLFWwindow* window, int button, int action, int mods)
         {
             const WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
+            Event e;
             switch (action)
             {
             case GLFW_PRESS:
                 {
-                    MouseButtonPressedEvent event(button);
-                    data.EventCallback(event);
+                    e.data = MouseButtonPressedEvent{button};
+                    data.EventCallback(e);
                     break;
                 }
             case GLFW_RELEASE:
                 {
-                    MouseButtonReleasedEvent event(button);
-                    data.EventCallback(event);
+                    e.data = MouseButtonReleasedEvent{button};
+                    data.EventCallback(e);
                     break;
                 }
             default: break;
@@ -132,16 +132,18 @@ namespace GreyboxEngine
         {
             const WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
 
-            MouseScrolledEvent event((float)xOffset, (float) yOffset);
-            data.EventCallback(event);
+            Event e;
+            e.data = MouseScrollEvent{(float)xOffset, (float) yOffset};
+            data.EventCallback(e);
         });
 
         glfwSetCursorPosCallback(m_window, [](GLFWwindow* window, const double xPos, const double yPos)
         {
             const WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
 
-            MouseMovedEvent event((float)xPos, (float)yPos);
-            data.EventCallback(event);
+            Event e;
+            e.data = MouseMovedEvent{(float)xPos, (float) yPos};
+            data.EventCallback(e);
         });
 
         glfwSetErrorCallback([](int error_code, const char* description)
@@ -153,10 +155,10 @@ namespace GreyboxEngine
         {
             const WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
 
-            KeyTypedEvent event(c);
-            data.EventCallback(event);
+            Event e;
+            e.data = KeyTypedEvent{c};
+            data.EventCallback(e);
         });
-        
     }
 
     void WindowsWindow::Shutdown()
@@ -165,10 +167,19 @@ namespace GreyboxEngine
         glfwTerminate();
     }
 
-    void WindowsWindow::OnUpdate()
+    void WindowsWindow::Begin()
     {
         glfwPollEvents();
+    }
+
+    void WindowsWindow::End()
+    {
         glfwSwapBuffers(m_window);
+    }
+    
+    void WindowsWindow::OnUpdate()
+    {
+
     }
 
     void WindowsWindow::SetVSync(const bool enabled)
@@ -184,5 +195,15 @@ namespace GreyboxEngine
     bool WindowsWindow::IsVSync() const
     {
         return m_data.VSync;
+    }
+
+    void WindowsWindow::Close()
+    {
+        glfwSetWindowShouldClose(m_window, true);
+    }
+
+    bool WindowsWindow::IsClosing()
+    {
+        return glfwWindowShouldClose(m_window);
     }
 }

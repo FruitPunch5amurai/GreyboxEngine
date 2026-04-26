@@ -1,14 +1,10 @@
 ﻿#pragma once
 
+#include <queue>
+
 #include "Core.h"
 #include "Window/Window.h"
-#include "Window/Events/KeyEvent.h"
 #include "Window/Layers/LayerStack.h"
-
-namespace GreyboxEngine
-{
-    class WindowCloseEvent;
-}
 
 namespace GreyboxEngine
 {
@@ -20,27 +16,32 @@ namespace GreyboxEngine
         Application();
         virtual ~Application();
 
-        void Run();
 
-        void OnEvent(Event& e);
+        void Run();
+        void OnEvent(Event e);
         bool OnWindowCloseEvent(WindowCloseEvent& e);
 
         void PushLayer(Layer* layer);
         void PushOverlay(Layer* layer);
         void PopLayer(Layer* layer);
         void PopOverlay(Layer* layer);
+
+        void Shutdown();
         
         inline static Application& Get(){return *s_instance;}
         inline Window& GetWindow(){return *m_window;}
         
     private:
+        static Application* s_instance;
+
+        std::queue<Event> m_eventQueue;
         std::unique_ptr<Window> m_window;
         EventDispatcher m_eventDispatcher;
-        static Application* s_instance;
-        
-        bool m_running = true;
         LayerStack m_layerStack;
+
+        bool m_running = true;
         
+        void ProcessEventQueue();
     };
 
     // To be define in client

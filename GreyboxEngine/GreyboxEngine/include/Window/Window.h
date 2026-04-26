@@ -27,10 +27,13 @@ namespace GreyboxEngine
     class GBE_API Window
     {
     public:
-        using EventCallbackFn = std::function<void(Event&)>;
+        using EventCallbackFn = std::function<void(Event)>;
 
         virtual ~Window() = default;
 
+        virtual void Begin() = 0;
+        virtual void End() = 0;
+        
         virtual void OnUpdate() = 0;
 
         virtual uint32_t GetWidth() const = 0;
@@ -41,7 +44,8 @@ namespace GreyboxEngine
         virtual void SetVSync(bool enabled) = 0;
         virtual bool IsVSync() const = 0;
         virtual void* GetNativeWindow() const = 0;
-
-        static Window* Create(const WindowProps& props = WindowProps());;
+        virtual void Close() = 0;
+        virtual bool IsClosing() = 0;
+        static Window* Create(const WindowProps& props = WindowProps());
     };
 }

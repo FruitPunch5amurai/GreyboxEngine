@@ -6,7 +6,8 @@ class TestLayer : public GreyboxEngine::Layer
 {
 public:
     TestLayer() : Layer("TestLayer"){}
-
+    ~TestLayer() override {}
+    
     void OnUpdate(float time) override
     {
 
@@ -23,7 +24,6 @@ class Sandbox : public GreyboxEngine::Application
 public:
     Sandbox()
     {
-        PushLayer(new TestLayer());
         PushOverlay(new GreyboxEngine::ImGuiLayer());
     }
     ~Sandbox(){}

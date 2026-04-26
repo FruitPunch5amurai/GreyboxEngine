@@ -22,6 +22,7 @@ project "GreyboxEngine"
     location "GreyboxEngine"
     kind "SharedLib"
     language "C++"
+    cppdialect "C++17"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
     buildoptions { "/utf-8" }

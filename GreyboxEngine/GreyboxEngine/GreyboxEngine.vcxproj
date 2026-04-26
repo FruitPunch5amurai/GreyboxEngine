@@ -84,6 +84,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <AdditionalOptions>/utf-8 /MDd %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -108,6 +109,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -132,6 +134,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -156,17 +159,13 @@
     <ClInclude Include="include\Input\KeyCode.h" />
     <ClInclude Include="include\Logging\Logging.h" />
     <ClInclude Include="include\Platform\PlatformUtils.h" />
-    <ClInclude Include="include\Window\Events\ApplicationEvent.h" />
     <ClInclude Include="include\Window\Events\Event.h" />
-    <ClInclude Include="include\Window\Events\KeyEvent.h" />
-    <ClInclude Include="include\Window\Events\MouseEvent.h" />
-    <ClInclude Include="include\Window\KeyCodes.h" />
     <ClInclude Include="include\Window\Layers\Layer.h" />
     <ClInclude Include="include\Window\Layers\LayerStack.h" />
     <ClInclude Include="include\Window\MouseCodes.h" />
-    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
-    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLLoader.h" />
     <ClInclude Include="include\Window\Platform\OpenGL\ImGuiImplGLFW.h" />
+    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLLoader.h" />
+    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="include\Window\Platform\WindowsWindow.h" />
     <ClInclude Include="include\Window\Window.h" />
     <ClInclude Include="include\gbepch.h" />
@@ -180,84 +179,8 @@
     <ClCompile Include="src\Platform\PlatformUtils.cpp" />
     <ClCompile Include="src\Window\Layers\Layer.cpp" />
     <ClCompile Include="src\Window\Layers\LayerStack.cpp" />
-    <ClCompile Include="src\Window\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
-      <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <Optimization>Disabled</Optimization>
-      <SupportJustMyCode>true</SupportJustMyCode>
-      <AssemblerOutput>NoListing</AssemblerOutput>
-      <AssemblerListingLocation>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\GreyboxEngine\..\bin-int\Debug-windows-x86_64\GreyboxEngine\</AssemblerListingLocation>
-      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
-      <BrowseInformation>false</BrowseInformation>
-      <BrowseInformationFile>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\GreyboxEngine\..\bin-int\Debug-windows-x86_64\GreyboxEngine\</BrowseInformationFile>
-      <CompileAs>Default</CompileAs>
-      <UseDynamicDebugging>false</UseDynamicDebugging>
-      <ConformanceMode>Default</ConformanceMode>
-      <DiagnosticsFormat>Column</DiagnosticsFormat>
-      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <ErrorReporting>Prompt</ErrorReporting>
-      <ExpandAttributedSource>false</ExpandAttributedSource>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <EnableASAN>false</EnableASAN>
-      <EnableFuzzer>false</EnableFuzzer>
-      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <EnableVectorLength>NotSet</EnableVectorLength>
-      <FloatingPointModel>Precise</FloatingPointModel>
-      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
-      <GenerateModuleDependencies>false</GenerateModuleDependencies>
-      <GenerateSourceDependencies>false</GenerateSourceDependencies>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
-      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>Default</LanguageStandard>
-      <LanguageStandard_C>Default</LanguageStandard_C>
-      <MinimalRebuild>false</MinimalRebuild>
-      <ModuleDependenciesFile>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\GreyboxEngine\..\bin-int\Debug-windows-x86_64\GreyboxEngine\</ModuleDependenciesFile>
-      <ModuleOutputFile>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\GreyboxEngine\..\bin-int\Debug-windows-x86_64\GreyboxEngine\</ModuleOutputFile>
-      <OmitDefaultLibName>false</OmitDefaultLibName>
-      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <WholeProgramOptimization>false</WholeProgramOptimization>
-      <ObjectFileName>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\GreyboxEngine\..\bin-int\Debug-windows-x86_64\GreyboxEngine\</ObjectFileName>
-      <CallingConvention>Cdecl</CallingConvention>
-      <ProgramDataBaseFileName>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\GreyboxEngine\..\bin-int\Debug-windows-x86_64\GreyboxEngine\vc143.pdb</ProgramDataBaseFileName>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>gbepch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\GreyboxEngine\..\bin-int\Debug-windows-x86_64\GreyboxEngine\GreyboxEngine.pch</PrecompiledHeaderOutputFile>
-      <PreprocessToFile>false</PreprocessToFile>
-      <PreprocessKeepComments>false</PreprocessKeepComments>
-      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
-      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
-      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
-      <ShowIncludes>false</ShowIncludes>
-      <SourceDependenciesFile>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\GreyboxEngine\..\bin-int\Debug-windows-x86_64\GreyboxEngine\</SourceDependenciesFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <SpectreMitigation>false</SpectreMitigation>
-      <StructMemberAlignment>Default</StructMemberAlignment>
-      <TrackerLogDirectory>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\GreyboxEngine\..\bin-int\Debug-windows-x86_64\GreyboxEngine\GreyboxEngine.tlog\</TrackerLogDirectory>
-      <TranslateIncludes>false</TranslateIncludes>
-      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
-      <TreatWarningAsError>false</TreatWarningAsError>
-      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <UseFullPaths>true</UseFullPaths>
-      <WarningLevel>Level3</WarningLevel>
-      <XMLDocumentationFileName>D:\Users\Jason\Desktop\Greybox Engine\GreyboxEngine\GreyboxEngine\..\bin-int\Debug-windows-x86_64\GreyboxEngine\</XMLDocumentationFileName>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <IntelJCCErratum>false</IntelJCCErratum>
-      <BuildStlModules>false</BuildStlModules>
-      <TreatAngleIncludeAsExternal>false</TreatAngleIncludeAsExternal>
-      <ExternalWarningLevel>Level3</ExternalWarningLevel>
-      <TreatExternalTemplatesAsInternal>true</TreatExternalTemplatesAsInternal>
-      <DisableAnalyzeExternal>false</DisableAnalyzeExternal>
-      <PreprocessorDefinitions>GBE_BUILD_DLL;GBE_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;GBE_DEBUG;_WINDLL;_UNICODE;UNICODE;</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>3rdParty\spdlog\include;include;3rdParty\GLFW\include;3rdParty\Glad\include;3rdParty\imgui;</AdditionalIncludeDirectories>
-      <AdditionalOptions>/utf-8 /MDd </AdditionalOptions>
-      <LinkCompiled>true</LinkCompiled>
-    </ClCompile>
     <ClCompile Include="src\Window\Platform\OpenGL\ImGuiImplGLFW.cpp" />
+    <ClCompile Include="src\Window\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Window\Platform\WindowsWindow.cpp" />
     <ClCompile Include="src\gbepch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

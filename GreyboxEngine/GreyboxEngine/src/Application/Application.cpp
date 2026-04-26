@@ -8,9 +8,7 @@
 #include "Logging/Logging.h"
 #include "Platform/PlatformUtils.h"
 #include "Window/Window.h"
-#include "Window/Events/ApplicationEvent.h"
 #include "Window/Events/Event.h"
-#include "Window/Events/MouseEvent.h"
 #include "Input/KeyCode.h"
 
 namespace GreyboxEngine
@@ -53,19 +51,33 @@ namespace GreyboxEngine
         m_layerStack.PopOverlay(layer);
         layer->OnDetach();
     }
-
-    void Application::OnEvent(Event& e)
+    
+    void Application::ProcessEventQueue()
     {
-        m_eventDispatcher.Dispatch<WindowCloseEvent>(e,GBE_BIND_EVENT_FN(&Application::OnWindowCloseEvent));
-        
-        GBE_CORE_INFO("{0}", e.ToString());
+        while(!m_eventQueue.empty())
+        {
+            auto& e = m_eventQueue.front();
 
-       for(auto it = m_layerStack.end(); it != m_layerStack.begin();)
-       {
-           (*--it)->OnEvent(e);
-           if (e.Handled)
-               break;
-       }
+            //GBE_CORE_INFO("{0}", e.ToString());
+
+            bool handled = m_eventDispatcher.Dispatch<WindowCloseEvent>(e,GBE_BIND_EVENT_FN(&Application::OnWindowCloseEvent));
+            if (!handled)
+            {
+                for(auto it = m_layerStack.end(); it != m_layerStack.begin();)
+                {
+                    (*--it)->OnEvent(e);
+                    if (e.handled)
+                        break;
+                }
+            }
+            
+            m_eventQueue.pop();
+        }
+    }
+
+    void Application::OnEvent(Event e)
+    {
+        m_eventQueue.push(e);
     }
 
     bool Application::OnWindowCloseEvent(WindowCloseEvent& e)
@@ -78,6 +90,10 @@ namespace GreyboxEngine
     {
         while(m_running)
         {
+            m_window->Begin();
+            
+            ProcessEventQueue();
+            
             const float time = Time::GetTime();
             
             for (Layer* layer : m_layerStack)
@@ -86,9 +102,16 @@ namespace GreyboxEngine
             }
             
             m_window->OnUpdate();
-            
+
+            m_window->End();
         }
+        
+        Shutdown();
     }
 
+    void Application::Shutdown()
+    {
+
+    }
 
 }
