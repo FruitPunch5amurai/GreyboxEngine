@@ -157,12 +157,12 @@
     <ClInclude Include="include\ImGui\ImGuiLayer.h" />
     <ClInclude Include="include\Input\Input.h" />
     <ClInclude Include="include\Input\KeyCode.h" />
+    <ClInclude Include="include\Input\MouseCodes.h" />
     <ClInclude Include="include\Logging\Logging.h" />
     <ClInclude Include="include\Platform\PlatformUtils.h" />
     <ClInclude Include="include\Window\Events\Event.h" />
     <ClInclude Include="include\Window\Layers\Layer.h" />
     <ClInclude Include="include\Window\Layers\LayerStack.h" />
-    <ClInclude Include="include\Window\MouseCodes.h" />
     <ClInclude Include="include\Window\Platform\OpenGL\ImGuiImplGLFW.h" />
     <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLLoader.h" />
     <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLRenderer.h" />

@@ -59,21 +59,19 @@ namespace GreyboxEngine
 #endif
 
         // Key Mappings
-#ifdef GBE_WINDOW_API_GLFW
-        io.KeyMap[ImGuiKey_Backspace] = GLFW_KEY_BACKSPACE;
-        io.KeyMap[ImGuiKey_LeftShift] = GLFW_KEY_LEFT_SHIFT;
-        io.KeyMap[ImGuiKey_LeftAlt] = GLFW_KEY_LEFT_ALT;
-        io.KeyMap[ImGuiKey_LeftSuper] = GLFW_KEY_LEFT_SUPER;
-        io.KeyMap[ImGuiKey_LeftCtrl] = GLFW_KEY_LEFT_CONTROL;
-        io.KeyMap[ImGuiKey_RightShift] = GLFW_KEY_RIGHT_SHIFT;
-        io.KeyMap[ImGuiKey_RightAlt] = GLFW_KEY_RIGHT_ALT;
-        io.KeyMap[ImGuiKey_RightSuper] = GLFW_KEY_RIGHT_SUPER;
-        io.KeyMap[ImGuiKey_RightCtrl] = GLFW_KEY_RIGHT_CONTROL;
-        io.KeyMap[ImGuiKey_LeftArrow] = GLFW_KEY_LEFT;
-        io.KeyMap[ImGuiKey_UpArrow] = GLFW_KEY_UP;
-        io.KeyMap[ImGuiKey_DownArrow] = GLFW_KEY_DOWN;
-        io.KeyMap[ImGuiKey_RightArrow] = GLFW_KEY_RIGHT;
-#endif
+        io.KeyMap[ImGuiKey_Backspace] = Key::Backspace;
+        io.KeyMap[ImGuiKey_LeftShift] = Key::LeftShift;
+        io.KeyMap[ImGuiKey_LeftAlt] = Key::LeftAlt;
+        io.KeyMap[ImGuiKey_LeftSuper] = Key::LeftSuper;
+        io.KeyMap[ImGuiKey_LeftCtrl] = Key::LeftControl;
+        io.KeyMap[ImGuiKey_RightShift] = Key::RightShift;
+        io.KeyMap[ImGuiKey_RightAlt] = Key::RightAlt;
+        io.KeyMap[ImGuiKey_RightSuper] = Key::RightSuper;
+        io.KeyMap[ImGuiKey_RightCtrl] = Key::RightControl;
+        io.KeyMap[ImGuiKey_LeftArrow] = Key::Left;
+        io.KeyMap[ImGuiKey_UpArrow] = Key::Up;
+        io.KeyMap[ImGuiKey_DownArrow] = Key::Down;
+        io.KeyMap[ImGuiKey_RightArrow] = Key::Right;
     }
 
     void ImGuiLayer::OnDetach()
@@ -163,12 +161,10 @@ namespace GreyboxEngine
     {
         ImGuiIO& io = ImGui::GetIO();
         io.KeysDown[e.key] = true;
-#ifdef GBE_WINDOW_API_GLFW
-        io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
-        io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
-        io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
-        io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
-#endif
+        io.KeyCtrl = io.KeysDown[Key::LeftControl] || io.KeysDown[Key::RightControl];
+        io.KeyShift = io.KeysDown[Key::LeftShift] || io.KeysDown[Key::RightShift];
+        io.KeySuper = io.KeysDown[Key::LeftSuper] || io.KeysDown[Key::RightSuper];
+        io.KeyAlt = io.KeysDown[Key::LeftAlt] || io.KeysDown[Key::RightAlt];
         return false;
     }
 
