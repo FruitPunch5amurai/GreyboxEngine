@@ -13,6 +13,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "GreyboxEngine/3rdParty/GLFW/include"
 IncludeDir["Glad"] = "GreyboxEngine/3rdParty/Glad/include"
 IncludeDir["ImGui"] = "GreyboxEngine/3rdParty/imgui"
+IncludeDir["glm"] = "GreyboxEngine/3rdParty/glm"
 
 include "GreyboxEngine/3rdParty/GLFW"
 include "GreyboxEngine/3rdParty/Glad"
@@ -42,7 +43,8 @@ project "GreyboxEngine"
         "%{prj.name}/include/",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
-        "%{IncludeDir.ImGui}"
+        "%{IncludeDir.ImGui}",
+        "%{IncludeDir.glm}"
     }
     
     links
@@ -84,6 +86,7 @@ project "Sandbox"
     location "Sandbox"
         kind "ConsoleApp"
         language "C++"
+        cppdialect "C++17"
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
         buildoptions { "/utf-8" }
@@ -98,7 +101,8 @@ project "Sandbox"
         {
             "GreyboxEngine/3rdParty/spdlog/include/",
             "GreyboxEngine/include",
-            "%{prj.name}/include/"
+            "%{prj.name}/include/",
+             "%{IncludeDir.glm}"
         }
         
         links

@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>gbepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>GBE_BUILD_DLL;GBE_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;GBE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>3rdParty\spdlog\include;include;3rdParty\GLFW\include;3rdParty\Glad\include;3rdParty\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>3rdParty\spdlog\include;include;3rdParty\GLFW\include;3rdParty\Glad\include;3rdParty\imgui;3rdParty\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <AdditionalOptions>/utf-8 /MDd %(AdditionalOptions)</AdditionalOptions>
@@ -105,7 +105,7 @@
       <PrecompiledHeaderFile>gbepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>GBE_BUILD_DLL;GBE_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;GBE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>3rdParty\spdlog\include;include;3rdParty\GLFW\include;3rdParty\Glad\include;3rdParty\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>3rdParty\spdlog\include;include;3rdParty\GLFW\include;3rdParty\Glad\include;3rdParty\imgui;3rdParty\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
@@ -130,7 +130,7 @@
       <PrecompiledHeaderFile>gbepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>GBE_BUILD_DLL;GBE_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;GBE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>3rdParty\spdlog\include;include;3rdParty\GLFW\include;3rdParty\Glad\include;3rdParty\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>3rdParty\spdlog\include;include;3rdParty\GLFW\include;3rdParty\Glad\include;3rdParty\imgui;3rdParty\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>

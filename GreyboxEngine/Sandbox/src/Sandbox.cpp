@@ -1,7 +1,5 @@
 #include <GreyboxEngine.h>
 
-
-
 class TestLayer : public GreyboxEngine::Layer
 {
 public:

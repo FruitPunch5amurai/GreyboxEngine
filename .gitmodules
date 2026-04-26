@@ -10,3 +10,6 @@
 [submodule "GreyboxEngine/GreyboxEngine/3rdParty/imgui"]
 	path = GreyboxEngine/GreyboxEngine/3rdParty/imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "GreyboxEngine/GreyboxEngine/3rdParty/glm"]
+	path = GreyboxEngine/GreyboxEngine/3rdParty/glm
+	url = https://github.com/g-truc/glm

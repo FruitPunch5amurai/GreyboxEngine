@@ -3,9 +3,6 @@
 #include "Core.h"
 #include <variant>
 
-#include "Input/KeyCode.h"
-#include "Window/MouseCodes.h"
-
 namespace GreyboxEngine
 {
     struct KeyPressedEvent
