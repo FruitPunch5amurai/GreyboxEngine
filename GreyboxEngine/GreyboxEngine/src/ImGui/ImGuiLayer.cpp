@@ -3,18 +3,20 @@
 
 #include "imgui.h"
 #include "Application/Application.h"
-#include "Input/KeyCode.h"
 
 #ifdef GBE_WINDOW_API_GLFW
+#include "backends/imgui_impl_glfw.h"
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 #endif
 
+#ifdef GBE_RENDER_API_OPENGL
+#include "backends/imgui_impl_opengl3.h"
+#endif
+
 #include "Window/Platform/WindowsWindow.h"
-#include "Window/Platform/OpenGL/ImGuiOpenGLRenderer.h"
 
 #ifdef GBE_WINDOW_API_GLFW
-#include "Window/Platform/OpenGL/ImGuiImplGLFW.h"
 #endif
 
 namespace GreyboxEngine
@@ -31,66 +33,94 @@ namespace GreyboxEngine
 
     void ImGuiLayer::OnAttach()
     {
-        ImGui::CreateContext();
-        ImGui::StyleColorsDark();
+            // Setup Dear ImGui context
+            IMGUI_CHECKVERSION();
+            ImGui::CreateContext();
+            ImGuiIO& io = ImGui::GetIO(); (void)io;
+            io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
+            //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+            io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+            io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
+            //io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoTaskBarIcons;
+            //io.ConfigFlags |= ImGuiConfigFlags_ViewportsNoMerge;
+            
+            // Setup Dear ImGui style
+            ImGui::StyleColorsDark();
+            //ImGui::StyleColorsClassic();
 
-        ImGuiIO& io = ImGui::GetIO();
-        io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
-        io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
+            // When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
+            ImGuiStyle& style = ImGui::GetStyle();
+            if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+            {
+                    style.WindowRounding = 0.0f;
+                    style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+            }
 
+            auto& colors = ImGui::GetStyle().Colors;
+            colors[ImGuiCol_WindowBg] = ImVec4{ 0.1f, 0.105f, 0.11f, 1.0f };
 
+            /* Dark Theme Begin */
+            // Headers
+            colors[ImGuiCol_Header] = ImVec4{ 0.2f, 0.205f, 0.21f, 1.0f };
+            colors[ImGuiCol_HeaderHovered] = ImVec4{ 0.3f, 0.305f, 0.31f, 1.0f };
+            colors[ImGuiCol_HeaderActive] = ImVec4{ 0.15f, 0.1505f, 0.151f, 1.0f };
+		
+            // Buttons
+            colors[ImGuiCol_Button] = ImVec4{ 0.2f, 0.205f, 0.21f, 1.0f };
+            colors[ImGuiCol_ButtonHovered] = ImVec4{ 0.3f, 0.305f, 0.31f, 1.0f };
+            colors[ImGuiCol_ButtonActive] = ImVec4{ 0.15f, 0.1505f, 0.151f, 1.0f };
 
-        // When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
-        ImGuiStyle& style = ImGui::GetStyle();
-        if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-        {
-            style.WindowRounding = 0.0f;
-            style.Colors[ImGuiCol_WindowBg].w = 1.0f;
-        }
+            // Frame BG
+            colors[ImGuiCol_FrameBg] = ImVec4{ 0.2f, 0.205f, 0.21f, 1.0f };
+            colors[ImGuiCol_FrameBgHovered] = ImVec4{ 0.3f, 0.305f, 0.31f, 1.0f };
+            colors[ImGuiCol_FrameBgActive] = ImVec4{ 0.15f, 0.1505f, 0.151f, 1.0f };
 
-        auto& app = Application::Get();
-        auto* nativeWindow = app.GetWindow().GetNativeWindow();
-        if (nativeWindow != nullptr)
-        {
+            // Tabs
+            colors[ImGuiCol_Tab] = ImVec4{ 0.15f, 0.1505f, 0.151f, 1.0f };
+            colors[ImGuiCol_TabHovered] = ImVec4{ 0.38f, 0.3805f, 0.381f, 1.0f };
+            colors[ImGuiCol_TabActive] = ImVec4{ 0.28f, 0.2805f, 0.281f, 1.0f };
+            colors[ImGuiCol_TabUnfocused] = ImVec4{ 0.15f, 0.1505f, 0.151f, 1.0f };
+            colors[ImGuiCol_TabUnfocusedActive] = ImVec4{ 0.2f, 0.205f, 0.21f, 1.0f };
+
+            // Title
+            colors[ImGuiCol_TitleBg] = ImVec4{ 0.15f, 0.1505f, 0.151f, 1.0f };
+            colors[ImGuiCol_TitleBgActive] = ImVec4{ 0.15f, 0.1505f, 0.151f, 1.0f };
+            colors[ImGuiCol_TitleBgCollapsed] = ImVec4{ 0.15f, 0.1505f, 0.151f, 1.0f };
+            /* Dark Theme End */
+
+            auto& app = Application::Get();
+            auto* nativeWindow = app.GetWindow().GetNativeWindow();
+            if (nativeWindow != nullptr)
+            {
 #ifdef GBE_WINDOW_API_GLFW
-            auto* windowsWindow = static_cast<GLFWwindow*>(nativeWindow);
-            ImGui_ImplGlfw_InitForOpenGL(windowsWindow, false);
+                    auto* windowsWindow = static_cast<GLFWwindow*>(nativeWindow);
+                    ImGui_ImplGlfw_InitForOpenGL(windowsWindow, true);
 #endif
-        }
+            }
 #ifdef GBE_RENDER_API_OPENGL
-        ImGui_ImplOpenGL3_Init("#version 410");
+            ImGui_ImplOpenGL3_Init("#version 410");
 #endif
-
-        // Key Mappings
-        io.KeyMap[ImGuiKey_Backspace] = Key::Backspace;
-        io.KeyMap[ImGuiKey_LeftShift] = Key::LeftShift;
-        io.KeyMap[ImGuiKey_LeftAlt] = Key::LeftAlt;
-        io.KeyMap[ImGuiKey_LeftSuper] = Key::LeftSuper;
-        io.KeyMap[ImGuiKey_LeftCtrl] = Key::LeftControl;
-        io.KeyMap[ImGuiKey_RightShift] = Key::RightShift;
-        io.KeyMap[ImGuiKey_RightAlt] = Key::RightAlt;
-        io.KeyMap[ImGuiKey_RightSuper] = Key::RightSuper;
-        io.KeyMap[ImGuiKey_RightCtrl] = Key::RightControl;
-        io.KeyMap[ImGuiKey_LeftArrow] = Key::Left;
-        io.KeyMap[ImGuiKey_UpArrow] = Key::Up;
-        io.KeyMap[ImGuiKey_DownArrow] = Key::Down;
-        io.KeyMap[ImGuiKey_RightArrow] = Key::Right;
     }
 
     void ImGuiLayer::OnDetach()
     {
+#ifdef GBE_RENDER_API_OPENGL
+            ImGui_ImplOpenGL3_Shutdown();
+#endif
+#ifdef GBE_WINDOW_API_GLFW
+            ImGui_ImplGlfw_Shutdown();
+#endif
+            ImGui::DestroyContext();
     }
 
-    void ImGuiLayer::OnUpdate(float time)
+    void ImGuiLayer::OnImGuiRender()
     {
-        ImGuiIO& io = ImGui::GetIO();
-        auto& app = Application::Get();
-        io.DisplaySize = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());
+        static bool show = true;
+        ImGui::ShowDemoWindow(&show);
+    }
 
-        io.DeltaTime = m_time > 0.0f ? (time - m_time) : (1.0f / 60.0f);
-        m_time = time;
-
-        // Start the Dear ImGui frame
+    void ImGuiLayer::Begin()
+    {
 #ifdef GBE_RENDER_API_OPENGL
         ImGui_ImplOpenGL3_NewFrame();
 #endif
@@ -98,109 +128,37 @@ namespace GreyboxEngine
         ImGui_ImplGlfw_NewFrame();
 #endif
         ImGui::NewFrame();
-
-        static bool show = true;
-        ImGui::ShowDemoWindow(&show);
-
-        ImGui::Render();
-
-        //int display_w, display_h;
-        //auto* glfwWindow = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
-        //glfwGetFramebufferSize(glfwWindow, &display_w, &display_h);
-        
-#ifdef GBE_RENDER_API_OPENGL
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-#endif
     }
 
-    void ImGuiLayer::OnEvent(Event& event)
+    void ImGuiLayer::End()
     {
-        m_eventDispatcher.Dispatch<MouseButtonPressedEvent>(
-            event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnMouseButtonPressedEvent));
-        m_eventDispatcher.Dispatch<MouseButtonReleasedEvent>(
-            event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnMouseButtonReleasedEvent));
-        m_eventDispatcher.Dispatch<MouseMovedEvent>(event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnMouseMovedEvent));
-        m_eventDispatcher.Dispatch<MouseScrollEvent>(event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnMouseScrollEvent));
-        m_eventDispatcher.Dispatch<KeyPressedEvent>(event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnKeyPressed));
-        m_eventDispatcher.Dispatch<KeyReleasedEvent>(event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnKeyReleased));
-        m_eventDispatcher.Dispatch<KeyTypedEvent>(event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnKeyTypedEvent));
-        m_eventDispatcher.Dispatch<WindowResizeEvent>(event, GBE_BIND_EVENT_FN(&ImGuiLayer::OnWindowResizeEvent));
-    }
-    
-    bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent& e)
-    {
-        ImGuiIO& io = ImGui::GetIO();
-        io.MouseDown[e.button] = true;
+            
+            ImGuiIO& io = ImGui::GetIO();
+            Application& app = Application::Get();
+            io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
 
-        return false;
-    }
-
-    bool ImGuiLayer::OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& e)
-    {
-        ImGuiIO& io = ImGui::GetIO();
-        io.MouseDown[e.button] = false;
-
-        return false;
-    }
-
-    bool ImGuiLayer::OnMouseMovedEvent(MouseMovedEvent& e)
-    {
-        ImGuiIO& io = ImGui::GetIO();
-        io.MousePos = ImVec2(e.x, e.y);
-
-        return false;
-    }
-
-    bool ImGuiLayer::OnMouseScrollEvent(MouseScrollEvent& e)
-    {
-        ImGuiIO& io = ImGui::GetIO();
-        io.MouseWheel += e.y;
-        io.MouseWheelH += e.x;
-
-        return false;
-    }
-
-    bool ImGuiLayer::OnKeyPressed(KeyPressedEvent& e)
-    {
-        ImGuiIO& io = ImGui::GetIO();
-        io.KeysDown[e.key] = true;
-        io.KeyCtrl = io.KeysDown[Key::LeftControl] || io.KeysDown[Key::RightControl];
-        io.KeyShift = io.KeysDown[Key::LeftShift] || io.KeysDown[Key::RightShift];
-        io.KeySuper = io.KeysDown[Key::LeftSuper] || io.KeysDown[Key::RightSuper];
-        io.KeyAlt = io.KeysDown[Key::LeftAlt] || io.KeysDown[Key::RightAlt];
-        return false;
-    }
-
-    bool ImGuiLayer::OnKeyReleased(KeyReleasedEvent& e)
-    {
-        ImGuiIO& io = ImGui::GetIO();
-        io.KeysDown[e.key] = false;
-
-        return false;
-    }
-
-    bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent& e)
-    {
-        ImGuiIO& io = ImGui::GetIO();
-        const int keyCode = e.keyCode;
-        if (keyCode > 0 && keyCode < 0x10000)
-        {
-            io.AddInputCharacter(static_cast<unsigned short>(keyCode));
-        }
-
-        return false;
-    }
-
-    bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent& e)
-    {
-        ImGuiIO& io = ImGui::GetIO();
-        io.DisplaySize = ImVec2(e.width, e.height);
-        io.DisplayFramebufferScale = ImVec2(1.f, 1.f);
+            // Rendering
+            ImGui::Render();
 
 #ifdef GBE_WINDOW_API_GLFW
-        glViewport(0, 0, e.width, e.height);
+        int display_w, display_h;
+        glfwGetFramebufferSize(static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow()), &display_w, &display_h);
+        glViewport(0, 0, display_w, display_h);
+        glClearColor(0,0,0,1);
+        glClear(GL_COLOR_BUFFER_BIT);
 #endif
-
-        return false;
+        
+#ifdef GBE_RENDER_API_OPENGL
+            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+#endif
+            if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+            {
+#ifdef GBE_WINDOW_API_GLFW
+                    GLFWwindow* backup_current_context = glfwGetCurrentContext();
+                    ImGui::UpdatePlatformWindows();
+                    ImGui::RenderPlatformWindowsDefault();
+                    glfwMakeContextCurrent(backup_current_context);
+#endif
+            }
     }
 }

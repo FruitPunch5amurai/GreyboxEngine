@@ -10,7 +10,7 @@ namespace GreyboxEngine
     float Time::GetTime()
     {
 #ifdef GBE_WINDOW_API_GLFW
-    return glfwGetTime();
+    return static_cast<float>(glfwGetTime());
 #endif
         return 0;
     }

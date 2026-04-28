@@ -21,9 +21,7 @@ class Sandbox : public GreyboxEngine::Application
 {
 public:
     Sandbox()
-    {
-        PushOverlay(new GreyboxEngine::ImGuiLayer());
-    }
+    {}
     ~Sandbox(){}
 };
 

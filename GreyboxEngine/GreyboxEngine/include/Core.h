@@ -1,11 +1,16 @@
 ﻿#pragma once
 
 #ifdef GBE_PLATFORM_WINDOWS
-    #ifdef GBE_BUILD_DLL
-        #define GBE_API __declspec(dllexport)
+    #if GBE_DYNAMIC_LINK
+        #ifdef GBE_BUILD_DLL
+            #define GBE_API __declspec(dllexport)
+        #else
+            #define GBE_API __declspec(dllimport)
+        #endif
     #else
-        #define GBE_API __declspec(dllimport)
+        #define GBE_API
     #endif
+
     #define GBE_RENDER_API_OPENGL
     #define GBE_WINDOW_API_GLFW
 #else

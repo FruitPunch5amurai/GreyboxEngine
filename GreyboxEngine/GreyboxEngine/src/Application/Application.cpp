@@ -4,6 +4,7 @@
 #include <cstdio>
 
 #include "GLFW/glfw3.h"
+#include "ImGui/ImGuiLayer.h"
 #include "Input/Input.h"
 #include "Logging/Logging.h"
 #include "Platform/PlatformUtils.h"
@@ -20,8 +21,14 @@ namespace GreyboxEngine
     {
         GreyboxEngine::Logging::Init();
         s_instance = this;
+        
+        // Window Creation
         m_window = std::unique_ptr<Window>(Window::Create());
         m_window->SetEventCallback(GBE_BIND_EVENT_FN(&Application::OnEvent));
+        
+        // ImGui Layer
+        m_imGuiLayer = new ImGuiLayer();
+        PushOverlay(m_imGuiLayer);
     }
 
     Application::~Application()
@@ -91,7 +98,6 @@ namespace GreyboxEngine
         while(m_running)
         {
             m_window->Begin();
-            
             ProcessEventQueue();
             
             const float time = Time::GetTime();
@@ -100,6 +106,14 @@ namespace GreyboxEngine
             {
                 layer->OnUpdate(time);
             }
+
+            /* ImGui Begin */
+            m_imGuiLayer->Begin();
+
+            m_imGuiLayer->OnImGuiRender();
+            
+            m_imGuiLayer->End();
+            /* ImGui End */
             
             m_window->OnUpdate();
 

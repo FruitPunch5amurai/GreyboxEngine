@@ -31,9 +31,6 @@
     <Filter Include="include\Window\Platform">
       <UniqueIdentifier>{A45E5F64-1096-A7FB-19A0-0B1F8556CEF4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\Window\Platform\OpenGL">
-      <UniqueIdentifier>{58A7324C-44CD-FCB2-2D13-827E19D8217F}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
@@ -60,9 +57,6 @@
     </Filter>
     <Filter Include="src\Window\Platform">
       <UniqueIdentifier>{4822DC07-B483-B915-3DF1-FFC7A951F0D4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Window\Platform\OpenGL">
-      <UniqueIdentifier>{7C6A822B-687A-2EFC-D133-931ABD621D95}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -105,15 +99,6 @@
     <ClInclude Include="include\Window\Layers\LayerStack.h">
       <Filter>include\Window\Layers</Filter>
     </ClInclude>
-    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiImplGLFW.h">
-      <Filter>include\Window\Platform\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLLoader.h">
-      <Filter>include\Window\Platform\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLRenderer.h">
-      <Filter>include\Window\Platform\OpenGL</Filter>
-    </ClInclude>
     <ClInclude Include="include\Window\Platform\WindowsWindow.h">
       <Filter>include\Window\Platform</Filter>
     </ClInclude>
@@ -130,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="src\GreyboxEngine.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGui\ImGuiBuild.cpp">
+      <Filter>src\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\ImGui\ImGuiLayer.cpp">
       <Filter>src\ImGui</Filter>
@@ -148,12 +136,6 @@
     </ClCompile>
     <ClCompile Include="src\Window\Layers\LayerStack.cpp">
       <Filter>src\Window\Layers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Window\Platform\OpenGL\ImGuiImplGLFW.cpp">
-      <Filter>src\Window\Platform\OpenGL</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Window\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
-      <Filter>src\Window\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Window\Platform\WindowsWindow.cpp">
       <Filter>src\Window\Platform</Filter>

@@ -23,19 +23,19 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
@@ -54,25 +54,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\bin\Debug-windows-x86_64\GreyboxEngine\</OutDir>
     <IntDir>$(ProjectDir)..\bin-int\Debug-windows-x86_64\GreyboxEngine\</IntDir>
     <TargetName>GreyboxEngine</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\bin\Release-windows-x86_64\GreyboxEngine\</OutDir>
     <IntDir>$(ProjectDir)..\bin-int\Release-windows-x86_64\GreyboxEngine\</IntDir>
     <TargetName>GreyboxEngine</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)..\bin\Dist-windows-x86_64\GreyboxEngine\</OutDir>
     <IntDir>$(ProjectDir)..\bin-int\Dist-windows-x86_64\GreyboxEngine\</IntDir>
     <TargetName>GreyboxEngine</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -83,21 +80,20 @@
       <AdditionalIncludeDirectories>3rdParty\spdlog\include;include;3rdParty\GLFW\include;3rdParty\Glad\include;3rdParty\imgui;3rdParty\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <AdditionalOptions>/utf-8 /MDd %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Debug-windows-x86_64\GreyboxEngine\GreyboxEngine.lib</ImportLibrary>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
     <ProjectReference>
     </ProjectReference>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Debug-windows-x86_64\GreyboxEngine\GreyboxEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\GreyboxEngine\GreyboxEngine.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\GreyboxEngine\GreyboxEngine.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -108,6 +104,7 @@
       <AdditionalIncludeDirectories>3rdParty\spdlog\include;include;3rdParty\GLFW\include;3rdParty\Glad\include;3rdParty\imgui;3rdParty\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
@@ -115,14 +112,12 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Release-windows-x86_64\GreyboxEngine\GreyboxEngine.lib</ImportLibrary>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
     <ProjectReference>
     </ProjectReference>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Release-windows-x86_64\GreyboxEngine\GreyboxEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\GreyboxEngine\GreyboxEngine.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\GreyboxEngine\GreyboxEngine.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
@@ -133,6 +128,7 @@
       <AdditionalIncludeDirectories>3rdParty\spdlog\include;include;3rdParty\GLFW\include;3rdParty\Glad\include;3rdParty\imgui;3rdParty\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalOptions>/utf-8 /MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
@@ -140,14 +136,12 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Dist-windows-x86_64\GreyboxEngine\GreyboxEngine.lib</ImportLibrary>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
     <ProjectReference>
     </ProjectReference>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Dist-windows-x86_64\GreyboxEngine\GreyboxEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\GreyboxEngine\GreyboxEngine.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\GreyboxEngine\GreyboxEngine.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Application\Application.h" />
@@ -163,9 +157,6 @@
     <ClInclude Include="include\Window\Events\Event.h" />
     <ClInclude Include="include\Window\Layers\Layer.h" />
     <ClInclude Include="include\Window\Layers\LayerStack.h" />
-    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiImplGLFW.h" />
-    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLLoader.h" />
-    <ClInclude Include="include\Window\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="include\Window\Platform\WindowsWindow.h" />
     <ClInclude Include="include\Window\Window.h" />
     <ClInclude Include="include\gbepch.h" />
@@ -173,14 +164,13 @@
   <ItemGroup>
     <ClCompile Include="src\Application\Application.cpp" />
     <ClCompile Include="src\GreyboxEngine.cpp" />
+    <ClCompile Include="src\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\Logging\Logging.cpp" />
     <ClCompile Include="src\Platform\PlatformUtils.cpp" />
     <ClCompile Include="src\Window\Layers\Layer.cpp" />
     <ClCompile Include="src\Window\Layers\LayerStack.cpp" />
-    <ClCompile Include="src\Window\Platform\OpenGL\ImGuiImplGLFW.cpp" />
-    <ClCompile Include="src\Window\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Window\Platform\WindowsWindow.cpp" />
     <ClCompile Include="src\gbepch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

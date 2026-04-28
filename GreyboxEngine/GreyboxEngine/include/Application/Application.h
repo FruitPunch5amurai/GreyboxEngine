@@ -8,6 +8,11 @@
 
 namespace GreyboxEngine
 {
+    class ImGuiLayer;
+}
+
+namespace GreyboxEngine
+{
     class Window;
 
     class GBE_API Application
@@ -38,7 +43,8 @@ namespace GreyboxEngine
         std::unique_ptr<Window> m_window;
         EventDispatcher m_eventDispatcher;
         LayerStack m_layerStack;
-
+        ImGuiLayer* m_imGuiLayer;
+        
         bool m_running = true;
         
         void ProcessEventQueue();

@@ -21,13 +21,14 @@ include "GreyboxEngine/3rdParty/imgui"
 
 project "GreyboxEngine"
     location "GreyboxEngine"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
     cppdialect "C++17"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
     buildoptions { "/utf-8" }
-    
+    staticruntime "on"
+
     pchheader "gbepch.h"
     pchsource "GreyboxEngine/src/gbepch.cpp"
     
@@ -64,29 +65,26 @@ project "GreyboxEngine"
         "GBE_PLATFORM_WINDOWS",
         "GLFW_INCLUDE_NONE"
     }
-    
-    postbuildcommands
-    {
-        ("{copy} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-    }
-    
+
     filter "configurations:Debug"
         defines "GBE_DEBUG"
         buildoptions "/MDd"
-        symbols "On"
+        symbols "on"
     filter "configurations:Release"
         defines "GBE_RELEASE"
         buildoptions "/MD"
-        symbols "On"
+        symbols "on"
     filter "configurations:Dist"
         defines "GBE_DIST"
         buildoptions "/MD"
-        symbols "On"
+        symbols "on"
+
 project "Sandbox"
     location "Sandbox"
         kind "ConsoleApp"
         language "C++"
         cppdialect "C++17"
+        staticruntime "on"
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
         buildoptions { "/utf-8" }
@@ -121,12 +119,12 @@ project "Sandbox"
         filter "configurations:Debug"
             defines "GBE_DEBUG GBE_ENABLE_ASSERTS"
             buildoptions "/MDd"
-            symbols "On"
+            symbols "on"
         filter "configurations:Release"
             defines "GBE_RELEASE"
             buildoptions "/MD"
-            symbols "On"
+            symbols "on"
         filter "configurations:Dist"
             defines "GBE_DIST"
             buildoptions "/MD"
-            symbols "On"
+            symbols "on"
