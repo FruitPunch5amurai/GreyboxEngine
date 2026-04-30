@@ -4,20 +4,14 @@
 #include "imgui.h"
 #include "Application/Application.h"
 
-#ifdef GBE_WINDOW_API_GLFW
-#include "backends/imgui_impl_glfw.h"
-#include <GLFW/glfw3.h>
-#include <glad/glad.h>
-#endif
-
 #ifdef GBE_RENDER_API_OPENGL
 #include "backends/imgui_impl_opengl3.h"
+#include "glad/glad.h"
 #endif
 
-#include "Window/Platform/WindowsWindow.h"
+#include <backends/imgui_impl_glfw.h>
 
-#ifdef GBE_WINDOW_API_GLFW
-#endif
+#include "Window/WindowsWindow.h"
 
 namespace GreyboxEngine
 {
@@ -92,8 +86,8 @@ namespace GreyboxEngine
             auto* nativeWindow = app.GetWindow().GetNativeWindow();
             if (nativeWindow != nullptr)
             {
-#ifdef GBE_WINDOW_API_GLFW
                     auto* windowsWindow = static_cast<GLFWwindow*>(nativeWindow);
+#ifdef GBE_RENDER_API_OPENGL
                     ImGui_ImplGlfw_InitForOpenGL(windowsWindow, true);
 #endif
             }
@@ -107,9 +101,7 @@ namespace GreyboxEngine
 #ifdef GBE_RENDER_API_OPENGL
             ImGui_ImplOpenGL3_Shutdown();
 #endif
-#ifdef GBE_WINDOW_API_GLFW
             ImGui_ImplGlfw_Shutdown();
-#endif
             ImGui::DestroyContext();
     }
 
@@ -124,9 +116,7 @@ namespace GreyboxEngine
 #ifdef GBE_RENDER_API_OPENGL
         ImGui_ImplOpenGL3_NewFrame();
 #endif
-#ifdef GBE_WINDOW_API_GLFW
         ImGui_ImplGlfw_NewFrame();
-#endif
         ImGui::NewFrame();
     }
 
@@ -140,25 +130,19 @@ namespace GreyboxEngine
             // Rendering
             ImGui::Render();
 
-#ifdef GBE_WINDOW_API_GLFW
         int display_w, display_h;
         glfwGetFramebufferSize(static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow()), &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);
-        glClearColor(0,0,0,1);
-        glClear(GL_COLOR_BUFFER_BIT);
-#endif
         
 #ifdef GBE_RENDER_API_OPENGL
             ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 #endif
             if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
             {
-#ifdef GBE_WINDOW_API_GLFW
                     GLFWwindow* backup_current_context = glfwGetCurrentContext();
                     ImGui::UpdatePlatformWindows();
                     ImGui::RenderPlatformWindowsDefault();
                     glfwMakeContextCurrent(backup_current_context);
-#endif
             }
     }
 }

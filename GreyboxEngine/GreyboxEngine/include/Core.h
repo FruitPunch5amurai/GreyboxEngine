@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #ifdef GBE_PLATFORM_WINDOWS
-    #if GBE_DYNAMIC_LINK
+    #ifdef GBE_DYNAMIC_LINK
         #ifdef GBE_BUILD_DLL
             #define GBE_API __declspec(dllexport)
         #else
@@ -12,7 +12,6 @@
     #endif
 
     #define GBE_RENDER_API_OPENGL
-    #define GBE_WINDOW_API_GLFW
 #else
     #error Greybox Engine only supports windows :(
 #endif

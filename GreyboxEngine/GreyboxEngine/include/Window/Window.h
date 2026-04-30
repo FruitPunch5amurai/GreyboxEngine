@@ -8,6 +8,8 @@
 
 namespace GreyboxEngine
 {
+    class GraphicsContext;
+
     struct WindowProps
     {
         std::string Title;
@@ -44,6 +46,7 @@ namespace GreyboxEngine
         virtual void SetVSync(bool enabled) = 0;
         virtual bool IsVSync() const = 0;
         virtual void* GetNativeWindow() const = 0;
+        virtual GraphicsContext* GetContext() const = 0;
         virtual void Close() = 0;
         virtual bool IsClosing() = 0;
         static Window* Create(const WindowProps& props = WindowProps());

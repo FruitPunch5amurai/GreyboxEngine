@@ -1,1 +1,7 @@
-[21:49:12] [info] GREYBOXENGINE: Creating window Greybox Engine (1280, 720)
+[23:28:51] [info] GREYBOXENGINE: Creating window Greybox Engine (1280, 720)
+[23:28:51] [info] GREYBOXENGINE: OpenGL Info:
+[23:28:51] [info] GREYBOXENGINE:   Company: NVIDIA Corporation
+[23:28:51] [info] GREYBOXENGINE:   GPU: NVIDIA GeForce RTX 4070 SUPER/PCIe/SSE2
+[23:28:51] [info] GREYBOXENGINE:   Version: 3.2.0 NVIDIA 595.79
+[23:28:51] [trace] APP: Shader TestShader Created
+[23:28:54] [trace] APP: Shader TestShader Destroyed

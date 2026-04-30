@@ -9,7 +9,6 @@ namespace GreyboxEngine
     {
         enum : MouseCode
         {
-#ifdef GBE_WINDOW_API_GLFW
             // From glfw3.h
             Button0                = 0,
             Button1                = 1,
@@ -24,7 +23,6 @@ namespace GreyboxEngine
             ButtonLeft             = Button0,
             ButtonRight            = Button1,
             ButtonMiddle           = Button2
-#endif
         };
     }
 }

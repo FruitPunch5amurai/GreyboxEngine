@@ -4,6 +4,8 @@
 
 #include <GLFW/glfw3.h>
 
+#include "Renderer/GraphicsContext.h"
+
 namespace GreyboxEngine
 {
     class WindowsWindow : public Window
@@ -25,8 +27,8 @@ namespace GreyboxEngine
         void Close() override;
         bool IsClosing() override;
         void* GetNativeWindow() const override { return m_window; }
-
-        // TESTING
+        GraphicsContext* GetContext() const override {return m_context;}
+        
     private:
         struct WindowData
         {
@@ -38,6 +40,7 @@ namespace GreyboxEngine
         };
 
         GLFWwindow* m_window;
+        GraphicsContext* m_context;
         WindowData m_data;
 
         virtual void Init(const WindowProps& props);

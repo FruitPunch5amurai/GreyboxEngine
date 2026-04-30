@@ -1,5 +1,5 @@
 ﻿#include "gbepch.h"
-#include "Window/Platform/WindowsWindow.h"
+#include "Window/WindowsWindow.h"
 #include "Logging/Logging.h"
 #include "Window/Events/Event.h"
 #include <glad/glad.h>
@@ -43,22 +43,26 @@ namespace GreyboxEngine
         const char* glsl_version = "#version 410";
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
-        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // Required on Mac
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // 3.2+ only
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // Required on Mac
 
-        m_window = glfwCreateWindow(static_cast<int>(props.Width), static_cast<int>(props.Height), props.Title.c_str(),
-                                    nullptr, nullptr);
 
-        glfwMakeContextCurrent(m_window);
+#if defined(GBE_DEBUG)
+        glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+#endif
+        m_window = glfwCreateWindow((int)props.Width, (int)props.Height, m_data.Title.c_str(), nullptr, nullptr);
+
+        m_context = GraphicsContext::Create(m_window);
+        m_context->Init();
 
         // GLAD Stuff
-        int status = gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
+        int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
         GBE_CORE_ASSERT(status, "Failed to initialize Glad");
-        
+
         glfwSetWindowUserPointer(m_window, &m_data);
         SetVSync(true);
-        
-        //GLFW Events
+
+        #pragma region GLFW Events
         glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, const int width, const int height)
         {
             WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
@@ -77,7 +81,7 @@ namespace GreyboxEngine
             e.data = WindowCloseEvent{};
             data.EventCallback(e);
         });
-        
+
         glfwSetKeyCallback(m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
         {
             const WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
@@ -133,7 +137,7 @@ namespace GreyboxEngine
             const WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
 
             Event e;
-            e.data = MouseScrollEvent{(float)xOffset, (float) yOffset};
+            e.data = MouseScrollEvent{(float)xOffset, (float)yOffset};
             data.EventCallback(e);
         });
 
@@ -142,7 +146,7 @@ namespace GreyboxEngine
             const WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
 
             Event e;
-            e.data = MouseMovedEvent{(float)xPos, (float) yPos};
+            e.data = MouseMovedEvent{(float)xPos, (float)yPos};
             data.EventCallback(e);
         });
 
@@ -159,6 +163,7 @@ namespace GreyboxEngine
             e.data = KeyTypedEvent{c};
             data.EventCallback(e);
         });
+#pragma endregion 
     }
 
     void WindowsWindow::Shutdown()
@@ -169,17 +174,17 @@ namespace GreyboxEngine
 
     void WindowsWindow::Begin()
     {
-        glfwPollEvents();
+        
     }
 
     void WindowsWindow::End()
     {
-        glfwSwapBuffers(m_window);
+        m_context->SwapBuffers();
+        glfwPollEvents();
     }
-    
+
     void WindowsWindow::OnUpdate()
     {
-
     }
 
     void WindowsWindow::SetVSync(const bool enabled)
