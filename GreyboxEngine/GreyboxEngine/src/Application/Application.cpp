@@ -14,7 +14,8 @@
 #include "Input/KeyCode.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 #include "Renderer/Buffer.h"
-#include "Renderer/VertexArray.h"
+#include "Renderer/RenderDevice.h"
+#include "Renderer/VertexLayout.h"
 
 namespace GreyboxEngine
 {
@@ -101,47 +102,43 @@ namespace GreyboxEngine
     {
         // TEST CODE BEGIN
 
-        const char* vertexShaderSource = "#version 330 core\n"
-            "layout (location = 0) in vec3 aPos;\n"
-            "void main()\n"
-            "{\n"
-            "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-            "}\0";
-        const char* fragmentShaderSource = "#version 330 core\n"
-            "out vec4 FragColor;\n"
-            "void main()\n"
-            "{\n"
-            "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-            "}\n\0";
-
-
-        float vertices[] = {
-            0.5f, 0.5f, 0.0f, // top right
-            0.5f, -0.5f, 0.0f, // bottom right
-            -0.5f, -0.5f, 0.0f, // bottom left
-            -0.5f, 0.5f, 0.0f // top left 
+        Vertex vertices[] = {
+            { { 0.5f,  0.5f, 0.0f}, {1.0f, 1.0f, 0.0f} }, // top right
+            { { 0.5f, -0.5f, 0.0f}, {1.0f, 0.0f, 0.0f} }, // bottom right
+            { {-0.5f, -0.5f, 0.0f}, {0.0f, 1.0f, 0.0f} }, // bottom left
+            { { -0.5f,  0.5f, 0.0f}, {0.0f, 0.0f, 1.0f} }  // top  left
         };
+        
         unsigned int indices[] = {
             // note that we start from 0!
             0, 1, 3, // first Triangle
             1, 2, 3 // second Triangle
         };
 
+        VertexLayout vertexLayout;
+        vertexLayout.Push<glm::vec3>(); // Position
+        vertexLayout.Push<glm::vec3>(); // Color
+
         // SHADER
-        auto shader = CreateShader<OpenGLShader>("TestShader", vertexShaderSource, fragmentShaderSource);
+        auto device = RenderDevice::Create();
+        //const auto shaderId = device->CreateShader("TestShader", vertexShaderSource, fragmentShaderSource);
+        const auto shaderId = device->CreateShaderFromFile("TestShader",
+            "Assets/Shaders/TestVertexShader",
+            "Assets/Shaders/TestFragmentShader");
+
+        auto vaoId = device->CreateVertexArray();
+        device->BindVertexArray(vaoId);
+
+        auto vboId = device->CreateVertexBuffer(vertices, sizeof(vertices));
+        auto iboId = device->CreateIndexBuffer(indices, sizeof(indices));        
+
+        device->BindVertexBuffer(vboId);
+
+        device->PassVertexLayout(vertexLayout);
         
-        auto vertexArray = VertexArray::Create();
-        vertexArray->Bind();
+        device->UnbindVertexBuffer(vboId);
 
-        auto vertexBuffer = VertexBuffer::Create(vertices, sizeof(vertices));
-        auto indexBuffer = IndexBuffer::Create(indices, sizeof(indices));
-
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-        glEnableVertexAttribArray(0);
-
-
-        vertexBuffer->Unbind();
-        vertexArray->Unbind();
+        device->UnbindVertexArray(vaoId);
 
         // TEST CODE END
         while (m_running)
@@ -153,9 +150,11 @@ namespace GreyboxEngine
             glClearColor(0.2f, 0.3f, 1.0f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT);
 
+            device->BindShader(shaderId);
+            device->Draw(vaoId, 6);
 
             // TEST CODE END
-
+            
             ProcessEventQueue();
 
             const float time = Time::GetTime();
@@ -165,13 +164,11 @@ namespace GreyboxEngine
                 layer->OnUpdate(time);
             }
 
-            /* ImGui Begin */
             m_imGuiLayer->Begin();
 
             m_imGuiLayer->OnImGuiRender();
 
             m_imGuiLayer->End();
-            /* ImGui End */
 
             m_window->OnUpdate();
 

@@ -65,4 +65,9 @@ namespace GreyboxEngine
         GBE_LOG_TRACE("Shader {0} Destroyed", m_name);
         glDeleteProgram(m_shaderProgram);
     }
+
+    void OpenGLShader::Bind() const
+    {
+        glUseProgram(m_shaderProgram);
+    }
 }

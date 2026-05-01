@@ -142,6 +142,10 @@
       <Project>{DB75B889-4736-34C0-1071-7D3D7CF0789C}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Shaders\TestFragmentShader" />
+    <Content Include="Assets\Shaders\TestVertexShader" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
